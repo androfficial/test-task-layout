@@ -1,0 +1,33 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 148px;
+  height: 50px;
+  padding: 0 16px;
+  font-family: 'Asap', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: math.div(25, 18) * 100%;
+  text-align: center;
+  user-select: none;
+  background: #f4e041;
+  border-radius: 80px;
+  transition: color 0.3s ease 0s, background-color 0.3s ease 0s;
+}
+.h1 {
+  font-size: 40px;
+  font-weight: 400;
+  line-height: math.div(40, 40) * 100%;
+}
+.h2 {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: math.div(28, 22) * 100%;
+}
+.p1 {
+  font-family: 'Asap', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: math.div(26, 16) * 100%;
+}

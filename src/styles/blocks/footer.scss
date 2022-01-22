@@ -1,0 +1,31 @@
+.footer {
+  // .footer__inner
+  &__inner {
+    display: flex;
+    flex-direction: column;
+  }
+  // .footer__container
+  &__container {
+    width: 100%;
+  }
+  // .footer__image
+  &__image {
+    display: block;
+    width: 100%;
+    max-width: 467px;
+    height: 153px;
+    margin-left: auto;
+    object-fit: cover;
+    object-position: center center;
+  }
+  // .footer__info
+  &__info {
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+  }
+  // .footer__text
+  &__text {
+    padding: 16px 0;
+    text-align: center;
+  }
+}
