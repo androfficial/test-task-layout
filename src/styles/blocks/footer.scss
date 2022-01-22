@@ -17,6 +17,9 @@
     margin-left: auto;
     object-fit: cover;
     object-position: center center;
+    @media (max-width: 768px) {
+      object-position: left bottom;
+    }
   }
   // .footer__info
   &__info {

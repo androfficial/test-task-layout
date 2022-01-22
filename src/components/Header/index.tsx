@@ -26,6 +26,7 @@ const Header = () => {
 
     if (element.contains(element)) {
       e.preventDefault();
+
       if (!element.classList.contains('active')) {
         document
           .querySelector('.menu__link.active')
@@ -154,16 +155,20 @@ const Header = () => {
                 )}
               </ul>
             </nav>
-            <button
-              onClick={onHandleMenu}
-              className='menu__icon icon-menu'
-              type='button'
-            >
-              <span />
-              <span />
-              <span />
-            </button>
-            <span ref={darkBackground} className='dark-background' />
+            {isMobile && (
+              <>
+                <button
+                  onClick={onHandleMenu}
+                  className='menu__icon icon-menu'
+                  type='button'
+                >
+                  <span />
+                  <span />
+                  <span />
+                </button>
+                <span ref={darkBackground} className='dark-background' />
+              </>
+            )}
           </div>
         </div>
       </div>
