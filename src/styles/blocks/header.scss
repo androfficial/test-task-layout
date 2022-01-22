@@ -85,19 +85,30 @@
     font-size: 16px;
     text-align: center;
     user-select: none;
+    border: 1px solid transparent;
     border-radius: 4px;
-    transition: color 0.3s ease 0s, background-color 0.3s ease 0s;
-    &:focus {
-      background-color: rgba(#00bdd3, 0.15);
+    transition: color 0.3s ease 0s, background-color 0.3s ease 0s,
+      border-color 0.3s ease 0s;
+    &.active {
+      color: $secondaryColor;
+    }
+    &:not(.active):focus {
+      border-color: $secondaryColor;
     }
     @media (hover: hover) {
       &:not(.active):hover {
         color: $secondaryColor;
         background-color: rgba(#00bdd3, 0.1);
+        border-color: transparent;
       }
     }
     @media (max-width: 768px) {
       padding: 0 8px;
+      &.active {
+        color: $secondaryColor;
+        background-color: rgba(#00bdd3, 0.1);
+        border-color: transparent;
+      }
     }
   }
 }

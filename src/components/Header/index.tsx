@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Logo from 'assets/images/logo.svg';
 import cn from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 const Header = () => {
@@ -16,6 +18,20 @@ const Header = () => {
   const onClickOutside = (event: MouseEvent): void => {
     if (darkBackground?.current?.contains(event.target as Node)) {
       setIsOpenMenu((prev) => !prev);
+    }
+  };
+
+  const onClickNavLink = (e: React.MouseEvent): void => {
+    const element = e.target as HTMLAnchorElement;
+
+    if (element.contains(element)) {
+      e.preventDefault();
+      if (!element.classList.contains('active')) {
+        document
+          .querySelector('.menu__link.active')
+          ?.classList.remove('active');
+        element.classList.add('active');
+      }
     }
   };
 
@@ -41,7 +57,7 @@ const Header = () => {
           </div>
           <div className='header__menu menu'>
             <nav className={cn('menu__body', isOpenMenu && 'active')}>
-              <ul className='menu__list'>
+              <ul onClick={onClickNavLink} className='menu__list'>
                 <div className='menu__wrapper'>
                   <li className='menu__item'>
                     <a href='' className='menu__link'>
