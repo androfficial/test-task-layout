@@ -2,14 +2,18 @@
 import Logo from 'assets/images/logo.svg';
 import cn from 'classnames';
 import { useEffect, useRef, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const darkBackground = useRef<HTMLSpanElement>(null);
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
 
   const onHandleMenu = () => setIsOpenMenu((prev) => !prev);
 
-  const onClickOutside = (event: MouseEvent) => {
+  const onClickOutside = (event: MouseEvent): void => {
     if (darkBackground?.current?.contains(event.target as Node)) {
       setIsOpenMenu((prev) => !prev);
     }
@@ -49,11 +53,13 @@ const Header = () => {
                       Relationships
                     </a>
                   </li>
-                  <li className='menu__item'>
-                    <a href='' className='menu__link'>
-                      Requirements
-                    </a>
-                  </li>
+                  {!isMobile && (
+                    <li className='menu__item'>
+                      <a href='' className='menu__link'>
+                        Requirements
+                      </a>
+                    </li>
+                  )}
                   <li className='menu__item'>
                     <a href='' className='menu__link'>
                       Users
@@ -64,7 +70,72 @@ const Header = () => {
                       Sign Up
                     </a>
                   </li>
+                  {isMobile && (
+                    <li className='menu__item'>
+                      <a href='' className='menu__link'>
+                        Terms and Conditions
+                      </a>
+                    </li>
+                  )}
                 </div>
+                {isMobile && (
+                  <>
+                    <div className='menu__wrapper'>
+                      <li className='menu__item'>
+                        <a href='' className='menu__link'>
+                          How it works
+                        </a>
+                      </li>
+                      <li className='menu__item'>
+                        <a href='' className='menu__link'>
+                          Partnership
+                        </a>
+                      </li>
+                      <li className='menu__item'>
+                        <a href='' className='menu__link'>
+                          Help
+                        </a>
+                      </li>
+                      <li className='menu__item'>
+                        <a href='' className='menu__link'>
+                          Level testimonial
+                        </a>
+                      </li>
+                      <li className='menu__item'>
+                        <a href='' className='menu__link'>
+                          Contact us
+                        </a>
+                      </li>
+                    </div>
+                    <div className='menu__wrapper'>
+                      <li className='menu__item'>
+                        <a href='' className='menu__link'>
+                          Articles
+                        </a>
+                      </li>
+                      <li className='menu__item'>
+                        <a href='' className='menu__link'>
+                          Our news
+                        </a>
+                      </li>
+                      <li className='menu__item'>
+                        <a href='' className='menu__link'>
+                          Testimonials
+                        </a>
+                      </li>
+                      <li className='menu__item'>
+                        <a href='' className='menu__link'>
+                          Licenses
+                        </a>
+                      </li>
+                      <li className='menu__item'>
+                        <a href='' className='menu__link'>
+                          Privacy Policy
+                        </a>
+                      </li>
+                    </div>
+                  </>
+                )}
               </ul>
             </nav>
             <button
