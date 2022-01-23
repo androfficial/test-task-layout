@@ -41,15 +41,22 @@ body {
   margin: 0 auto;
 }
 
+// <ПОДКЛЮЧЕНИЕ @KEYFRAMES АНИМАЦИЙ>====================================
+@import 'blocks/@keyframes';
+
 // <ПОДКЛЮЧЕНИЕ ГОТОВЫХ КЛАССОВ>========================================
 @import 'blocks/ui';
 
 // === <ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ> =================
 @import 'blocks/header';
+@import 'sections/intro';
 @import 'blocks/footer';
 
 // === <ОСНОВНОЙ БЛОК> =================================================
 .page {
   flex: 1 1 auto;
   padding-top: 60px;
+  // .page__intro
+  &__intro {
+  }
 }

@@ -151,14 +151,14 @@
       left: -100%;
       z-index: 103;
       width: $OpenMenuWidth;
-      height: $heightHeaderInner + px;
+      height: $heightHeaderInner;
       content: '';
       background-color: #fff;
       transition: left 0.6s ease 0s;
     }
     &::after {
       position: fixed;
-      top: $heightHeaderInner - 1 + px;
+      top: $heightHeaderInner;
       left: 0;
       z-index: 105;
       width: $OpenMenuWidth;

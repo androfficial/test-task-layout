@@ -1,19 +1,64 @@
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 148px;
   height: 50px;
   padding: 0 16px;
+  overflow: hidden;
   font-family: 'Asap', sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: math.div(25, 18) * 100%;
   text-align: center;
   user-select: none;
-  background: #f4e041;
+  background-color: transparent;
   border-radius: 80px;
-  transition: color 0.3s ease 0s, background-color 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 1;
+    content: '';
+    background-color: rgba(#7e7e7e, 0.5);
+    border-radius: 80px;
+  }
+  &::before {
+    width: 0;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+  &::after {
+    width: 130px;
+    height: 86px;
+    transition: transform 0.3s ease 0s;
+    transform: translate(-50%, 0px) scale(0);
+  }
+  &:not(:disabled):active {
+    &::after {
+      transform: translate(-50%, 0px) scale(1);
+    }
+  }
+  &:not(:active):focus {
+    &::before {
+      animation: button-width-animation 1.1s ease-in-out infinite alternate;
+    }
+  }
+  &:disabled {
+    color: #fff;
+    background-color: #b4b4b4;
+  }
+}
+.btn--yellow {
+  background-color: $primaryColor;
+  @media (hover: hover) {
+    &:not(:active):not(:focus):not(:disabled):hover {
+      background-color: #ffe302;
+    }
+  }
 }
 .h1 {
   font-size: 40px;

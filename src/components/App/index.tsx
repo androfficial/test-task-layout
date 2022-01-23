@@ -1,10 +1,12 @@
-import { Footer, Header } from '..';
+import { Footer, Header, Intro } from '..';
 
 const App = () => {
   return (
     <>
       <Header />
-      <main className='page'>main</main>
+      <main className='page'>
+        <Intro />
+      </main>
       <Footer />
     </>
   );
