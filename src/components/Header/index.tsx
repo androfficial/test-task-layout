@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -58,102 +59,102 @@ const Header = () => {
           </div>
           <div className='header__menu menu'>
             <nav className={cn('menu__body', isOpenMenu && 'active')}>
-              <ul onClick={onClickNavLink} className='menu__list'>
+              <div onClick={onClickNavLink} className='menu__list'>
                 <div className='menu__wrapper'>
-                  <li className='menu__item'>
+                  <div className='menu__item'>
                     <a href='' className='menu__link'>
                       About me
                     </a>
-                  </li>
-                  <li className='menu__item'>
+                  </div>
+                  <div className='menu__item'>
                     <a href='' className='menu__link'>
                       Relationships
                     </a>
-                  </li>
+                  </div>
                   {!isMobile && (
-                    <li className='menu__item'>
+                    <div className='menu__item'>
                       <a href='' className='menu__link'>
                         Requirements
                       </a>
-                    </li>
+                    </div>
                   )}
-                  <li className='menu__item'>
+                  <div className='menu__item'>
                     <a href='' className='menu__link'>
                       Users
                     </a>
-                  </li>
-                  <li className='menu__item'>
+                  </div>
+                  <div className='menu__item'>
                     <a href='' className='menu__link'>
                       Sign Up
                     </a>
-                  </li>
+                  </div>
                   {isMobile && (
-                    <li className='menu__item'>
+                    <div className='menu__item'>
                       <a href='' className='menu__link'>
                         Terms and Conditions
                       </a>
-                    </li>
+                    </div>
                   )}
                 </div>
                 {isMobile && (
                   <>
                     <div className='menu__wrapper'>
-                      <li className='menu__item'>
+                      <div className='menu__item'>
                         <a href='' className='menu__link'>
                           How it works
                         </a>
-                      </li>
-                      <li className='menu__item'>
+                      </div>
+                      <div className='menu__item'>
                         <a href='' className='menu__link'>
                           Partnership
                         </a>
-                      </li>
-                      <li className='menu__item'>
+                      </div>
+                      <div className='menu__item'>
                         <a href='' className='menu__link'>
                           Help
                         </a>
-                      </li>
-                      <li className='menu__item'>
+                      </div>
+                      <div className='menu__item'>
                         <a href='' className='menu__link'>
                           Level testimonial
                         </a>
-                      </li>
-                      <li className='menu__item'>
+                      </div>
+                      <div className='menu__item'>
                         <a href='' className='menu__link'>
                           Contact us
                         </a>
-                      </li>
+                      </div>
                     </div>
                     <div className='menu__wrapper'>
-                      <li className='menu__item'>
+                      <div className='menu__item'>
                         <a href='' className='menu__link'>
                           Articles
                         </a>
-                      </li>
-                      <li className='menu__item'>
+                      </div>
+                      <div className='menu__item'>
                         <a href='' className='menu__link'>
                           Our news
                         </a>
-                      </li>
-                      <li className='menu__item'>
+                      </div>
+                      <div className='menu__item'>
                         <a href='' className='menu__link'>
                           Testimonials
                         </a>
-                      </li>
-                      <li className='menu__item'>
+                      </div>
+                      <div className='menu__item'>
                         <a href='' className='menu__link'>
                           Licenses
                         </a>
-                      </li>
-                      <li className='menu__item'>
+                      </div>
+                      <div className='menu__item'>
                         <a href='' className='menu__link'>
                           Privacy Policy
                         </a>
-                      </li>
+                      </div>
                     </div>
                   </>
                 )}
-              </ul>
+              </div>
             </nav>
             {isMobile && (
               <>

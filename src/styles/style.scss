@@ -36,9 +36,17 @@ body {
 
 // === <КОНТЕЙНЕР> =====================================================
 .container {
-  max-width: 1170px;
-  padding: 0 15px;
+  max-width: 1290px;
+  padding: 0 60px;
   margin: 0 auto;
+  @media (max-width: 1023px) {
+    max-width: 1234px;
+    padding: 0 32px;
+  }
+  @media (max-width: 767px) {
+    max-width: 1202px;
+    padding: 0 16px;
+  }
 }
 
 // <ПОДКЛЮЧЕНИЕ @KEYFRAMES АНИМАЦИЙ>====================================
@@ -50,6 +58,7 @@ body {
 // === <ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ> =================
 @import 'blocks/header';
 @import 'sections/intro';
+@import 'sections/acquaintance';
 @import 'blocks/footer';
 
 // === <ОСНОВНОЙ БЛОК> =================================================
@@ -58,5 +67,8 @@ body {
   padding-top: 60px;
   // .page__intro
   &__intro {
+  }
+  // .page__acquaintance
+  &__acquaintance {
   }
 }
