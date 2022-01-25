@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Typography } from '@mui/material';
 import AcquaintanceImage from 'assets/images/acquaintance/acquaintance-image.svg';
+import { textTransform } from 'services/textTransform';
 
 const Acquaintance = () => {
   return (
@@ -19,14 +20,13 @@ const Acquaintance = () => {
               Let's get acquainted
             </Typography>
             <h3 className='info-acquaintance__subtitle h2'>
-              I'm a good front-end developer
+              {textTransform("I'm a good front-end developer", 30)}
             </h3>
             <p className='info-acquaintance__text'>
-              What defines a good front-end developer is one that has skilled
-              knowledge of HTML, CSS, JS with a vast understanding of User
-              design thinking as they'll be building web interfaces with
-              accessibility in mind. They should also be excited to learn, as
-              the world of Front-End Development keeps evolving.
+              {textTransform(
+                "What defines a good front-end developer is one that has skilled knowledge of HTML, CSS, JS with a vast understanding of User design thinking as they'll be building web interfaces with accessibility in mind. They should also be excited to learn, as the world of Front-End Development keeps evolving.",
+                298
+              )}
             </p>
             <button
               className='info-acquaintance__btn btn btn--yellow'
