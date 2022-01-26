@@ -59,6 +59,7 @@ body {
 @import 'blocks/header';
 @import 'sections/intro';
 @import 'sections/acquaintance';
+@import 'sections/users';
 @import 'blocks/footer';
 
 // === <ОСНОВНОЙ БЛОК> =================================================
@@ -70,5 +71,8 @@ body {
   }
   // .page__acquaintance
   &__acquaintance {
+  }
+  // .page__users
+  &__users {
   }
 }

@@ -1,4 +1,4 @@
-import { Acquaintance, Footer, Header, Intro } from '..';
+import { Acquaintance, Footer, Header, Intro, Users } from '..';
 
 const App = () => {
   return (
@@ -7,6 +7,7 @@ const App = () => {
       <main className='page'>
         <Intro />
         <Acquaintance />
+        <Users />
       </main>
       <Footer />
     </>

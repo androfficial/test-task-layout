@@ -55,16 +55,21 @@
 }
 .btn--yellow {
   background-color: $primaryColor;
+  &.disabled {
+    display: none;
+  }
   @media (hover: hover) {
-    &:not(:active):not(:focus):hover {
+    &:not(:active):not(:focus):not(:disabled):hover {
       background-color: #ffe302;
     }
   }
 }
 .h1 {
+  font-family: inherit !important;
   font-size: 40px !important;
   font-weight: 400 !important;
   line-height: math.div(40, 40) * 100% !important;
+  letter-spacing: normal !important;
 }
 .h2 {
   font-size: 22px !important;
