@@ -1,7 +1,7 @@
 import { DEFAULT_USERS_PATH } from 'api/api';
 import { getUsers } from 'api/rest/users';
 import { Dispatch } from 'redux';
-import { IGetUsers, TUsersAction, Types } from 'types/global/game';
+import { IGetUsers, TUsersAction, Types } from 'types/global/users';
 
 export const setUsers = (payload: IGetUsers): TUsersAction => ({
   type: Types.SET_USERS,

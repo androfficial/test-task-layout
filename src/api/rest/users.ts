@@ -1,6 +1,6 @@
 import { catchError } from 'api/config';
 import axios, { AxiosError } from 'axios';
-import { IGetUsers } from 'types/global/game';
+import { IGetUsers } from 'types/global/users';
 
 export const getUsers = async (path: string) => {
   try {

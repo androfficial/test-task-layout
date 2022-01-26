@@ -5,7 +5,7 @@ import {
   ISetUsers,
   TUsersAction,
   Types,
-} from 'types/global/game';
+} from 'types/global/users';
 
 const initialState = {
   users: [] as ISetUsers[],

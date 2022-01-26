@@ -1,4 +1,4 @@
-import { ISetUsers } from 'types/global/game';
+import { ISetUsers } from 'types/global/users';
 
 const User = ({
   id,
