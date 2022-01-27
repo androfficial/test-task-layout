@@ -60,6 +60,7 @@ body {
 @import 'sections/intro';
 @import 'sections/acquaintance';
 @import 'sections/users';
+@import 'sections/register';
 @import 'blocks/footer';
 
 // === <ОСНОВНОЙ БЛОК> =================================================
@@ -74,5 +75,8 @@ body {
   }
   // .page__users
   &__users {
+  }
+  // .page__register
+  &__register {
   }
 }
