@@ -1,4 +1,4 @@
-import { catchError } from 'api/config';
+// import { catchError } from 'api/config';
 import axios, { AxiosError } from 'axios';
 import { IGetUsers } from 'types/global/users';
 
@@ -9,7 +9,7 @@ export const getUsers = async (path: string) => {
     return data;
   } catch (error: unknown | AxiosError) {
     if (axios.isAxiosError(error)) {
-      catchError(error);
+      // catchError(error);
       return false;
     }
     console.error(error);

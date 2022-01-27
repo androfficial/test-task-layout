@@ -1,5 +1,8 @@
 .users {
   padding-bottom: 175px;
+  @media (max-width: 612px) {
+    padding-bottom: 145px;
+  }
   // .users__container
   &__container {
   }
