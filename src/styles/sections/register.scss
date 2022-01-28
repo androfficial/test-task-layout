@@ -67,6 +67,12 @@
     &:not(:last-child) {
       margin-bottom: 48px;
     }
+    // .FormLabel
+    .MuiFormLabel-root {
+      font-family: 'Nunito', sans-serif;
+      color: rgba(#000, 0.87);
+      letter-spacing: normal;
+    }
   }
   // .form__upload-photo
   &__upload-photo {
@@ -101,12 +107,6 @@
   // .MuiOutlinedInput-notchedOutline
   .MuiOutlinedInput-notchedOutline {
     border-color: #d0cfcf;
-  }
-  // .FormLabel
-  .MuiFormLabel-root {
-    font-family: 'Nunito', sans-serif;
-    color: rgba(#000, 0.87);
-    letter-spacing: normal;
   }
   // .FormControlLabel
   .MuiFormControlLabel-root {
