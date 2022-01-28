@@ -76,12 +76,30 @@ const Register = () => {
                 <FormControlLabel value='QA' control={<Radio />} label='QA' />
               </RadioGroup>
             </div>
-            <div className='form__upload-photo' />
+            <div className='form__upload-photo photo-upload'>
+              <div className='photo-upload__btn-wrapper'>
+                <button className='photo-upload__btn btn' type='button'>
+                  Upload
+                </button>
+                <input
+                  className='photo-upload__input'
+                  type='file'
+                  name='image'
+                  accept='.jpg'
+                />
+              </div>
+              <TextField
+                id='outlined-basic'
+                variant='outlined'
+                placeholder='Upload your photo'
+                fullWidth
+              />
+            </div>
             <div className='form__sign-up'>
               <button
                 disabled
                 className='form__btn btn btn--yellow'
-                type='button'
+                type='submit'
               >
                 <span>Sign up</span>
               </button>
