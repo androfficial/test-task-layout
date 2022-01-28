@@ -65,21 +65,29 @@ const Register = () => {
                 name='radio-buttons-group'
               >
                 <FormControlLabel
+                  classes={{ root: 'form__control-label' }}
                   value='Frontend developer'
-                  control={<Radio />}
+                  control={<Radio size='small' />}
                   label='Frontend developer'
                 />
                 <FormControlLabel
+                  classes={{ root: 'form__control-label' }}
                   value='Backend developer'
-                  control={<Radio />}
+                  control={<Radio size='small' />}
                   label='Backend developer'
                 />
                 <FormControlLabel
+                  classes={{ root: 'form__control-label' }}
                   value='Designer'
-                  control={<Radio />}
+                  control={<Radio size='small' />}
                   label='Designer'
                 />
-                <FormControlLabel value='QA' control={<Radio />} label='QA' />
+                <FormControlLabel
+                  classes={{ root: 'form__control-label' }}
+                  value='QA'
+                  control={<Radio size='small' />}
+                  label='QA'
+                />
               </RadioGroup>
             </div>
             <div className='form__upload-photo photo-upload'>

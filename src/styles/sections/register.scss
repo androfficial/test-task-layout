@@ -80,6 +80,13 @@
       }
     }
   }
+  // .form__select-position
+  &__select-position {
+    margin-top: 43px;
+    &:not(:last-child) {
+      margin-bottom: 48px;
+    }
+  }
   // .form__radio-label
   &__radio-label {
     &.MuiFormLabel-root {
@@ -88,11 +95,17 @@
       letter-spacing: normal;
     }
   }
-  // .form__select-position
-  &__select-position {
-    margin-top: 43px;
-    &:not(:last-child) {
-      margin-bottom: 48px;
+  // .form__control-label
+  &__control-label {
+    margin-right: 0px !important;
+    margin-left: -5px !important;
+    & .MuiFormControlLabel-label {
+      position: relative;
+      top: 0.5px;
+      padding-left: 8px;
+      font-family: 'Nunito', sans-serif;
+      line-height: 162%;
+      letter-spacing: normal;
     }
   }
   // .form__upload-photo
@@ -106,6 +119,16 @@
   // .form__btn
   &__btn {
     color: rgba(#fff, 0.87) !important;
+  }
+  .MuiFormGroup-root {
+    margin-top: 7px;
+  }
+  .MuiRadio-root {
+    padding: 4px;
+    color: #d0cfcf;
+    &.Mui-checked {
+      color: #00bdd3;
+    }
   }
 }
 .photo-upload {
