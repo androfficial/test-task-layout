@@ -28,29 +28,35 @@ const Register = () => {
           </h3>
         </div>
         <div className='register__body'>
-          <form action='' className='register__form form'>
+          <form action='' className='register__form form' method='POST'>
             <div className='form__input-fields'>
               <TextField
                 id='outlined-basic'
                 label='Your name'
                 variant='outlined'
                 fullWidth
+                classes={{ root: 'form__input' }}
               />
               <TextField
                 id='outlined-basic'
                 label='Email'
                 variant='outlined'
                 fullWidth
+                classes={{ root: 'form__input' }}
               />
               <TextField
                 id='outlined-basic'
                 label='Phone'
                 variant='outlined'
                 fullWidth
+                classes={{ root: 'form__input' }}
               />
             </div>
             <div className='form__select-position'>
-              <FormLabel id='demo-radio-buttons-group-label'>
+              <FormLabel
+                classes={{ root: 'form__radio-label' }}
+                id='demo-radio-buttons-group-label'
+              >
                 Select your position
               </FormLabel>
               <RadioGroup
@@ -79,7 +85,7 @@ const Register = () => {
             <div className='form__upload-photo photo-upload'>
               <div className='photo-upload__btn-wrapper'>
                 <button className='photo-upload__btn btn' type='button'>
-                  Upload
+                  <span>Upload</span>
                 </button>
                 <input
                   className='photo-upload__input'
@@ -92,6 +98,10 @@ const Register = () => {
                 id='outlined-basic'
                 variant='outlined'
                 placeholder='Upload your photo'
+                classes={{ root: 'form__input form__input--file' }}
+                InputProps={{
+                  readOnly: true,
+                }}
                 fullWidth
               />
             </div>
