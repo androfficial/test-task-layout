@@ -35,28 +35,22 @@ const Register = () => {
                 label='Your name'
                 variant='outlined'
                 fullWidth
-                classes={{ root: 'form__input' }}
               />
               <TextField
                 id='outlined-basic'
                 label='Email'
                 variant='outlined'
                 fullWidth
-                classes={{ root: 'form__input' }}
               />
               <TextField
                 id='outlined-basic'
                 label='Phone'
                 variant='outlined'
                 fullWidth
-                classes={{ root: 'form__input' }}
               />
             </div>
             <div className='form__select-position'>
-              <FormLabel
-                classes={{ root: 'form__radio-label' }}
-                id='demo-radio-buttons-group-label'
-              >
+              <FormLabel id='demo-radio-buttons-group-label'>
                 Select your position
               </FormLabel>
               <RadioGroup
@@ -65,25 +59,21 @@ const Register = () => {
                 name='radio-buttons-group'
               >
                 <FormControlLabel
-                  classes={{ root: 'form__control-label' }}
                   value='Frontend developer'
                   control={<Radio size='small' />}
                   label='Frontend developer'
                 />
                 <FormControlLabel
-                  classes={{ root: 'form__control-label' }}
                   value='Backend developer'
                   control={<Radio size='small' />}
                   label='Backend developer'
                 />
                 <FormControlLabel
-                  classes={{ root: 'form__control-label' }}
                   value='Designer'
                   control={<Radio size='small' />}
                   label='Designer'
                 />
                 <FormControlLabel
-                  classes={{ root: 'form__control-label' }}
                   value='QA'
                   control={<Radio size='small' />}
                   label='QA'
@@ -106,7 +96,7 @@ const Register = () => {
                 id='outlined-basic'
                 variant='outlined'
                 placeholder='Upload your photo'
-                classes={{ root: 'form__input form__input--file' }}
+                classes={{ root: 'form__input' }}
                 InputProps={{
                   readOnly: true,
                 }}

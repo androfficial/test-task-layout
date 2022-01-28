@@ -46,37 +46,18 @@
   }
   // .form__input
   &__input {
-    & .MuiOutlinedInput-root,
-    & .MuiInputLabel-root {
-      letter-spacing: normal;
-    }
     & .MuiOutlinedInput-root {
-      font-family: 'Asap', sans-serif;
-    }
-    & .MuiInputLabel-root {
-      font-family: 'Nunito', sans-serif;
-      color: #7e7e7e;
-    }
-    & .MuiOutlinedInput-input {
-      padding: 15.5px 16px;
-    }
-    & .MuiOutlinedInput-notchedOutline {
-      border-color: #d0cfcf;
-    }
-    &--file {
-      & .MuiOutlinedInput-root {
-        border-top-left-radius: 0px;
-        border-bottom-left-radius: 0px;
-        & .MuiOutlinedInput-input {
-          &::placeholder {
-            font-family: 'Nunito', sans-serif;
-            color: #7e7e7e;
-            opacity: 1;
-          }
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      & .MuiOutlinedInput-input {
+        &::placeholder {
+          font-family: 'Nunito', sans-serif;
+          color: #7e7e7e;
+          opacity: 1;
         }
-        & .MuiOutlinedInput-notchedOutline {
-          border-left-width: 0px;
-        }
+      }
+      & .MuiOutlinedInput-notchedOutline {
+        border-left-width: 0px;
       }
     }
   }
@@ -85,27 +66,6 @@
     margin-top: 43px;
     &:not(:last-child) {
       margin-bottom: 48px;
-    }
-  }
-  // .form__radio-label
-  &__radio-label {
-    &.MuiFormLabel-root {
-      font-family: 'Nunito', sans-serif;
-      color: rgba(#000, 0.87);
-      letter-spacing: normal;
-    }
-  }
-  // .form__control-label
-  &__control-label {
-    margin-right: 0px !important;
-    margin-left: -5px !important;
-    & .MuiFormControlLabel-label {
-      position: relative;
-      top: 0.5px;
-      padding-left: 8px;
-      font-family: 'Nunito', sans-serif;
-      line-height: 162%;
-      letter-spacing: normal;
     }
   }
   // .form__upload-photo
@@ -120,9 +80,53 @@
   &__btn {
     color: rgba(#fff, 0.87) !important;
   }
+  // .OutlinedInput, .InputLabel
+  .MuiOutlinedInput-root,
+  .MuiInputLabel-root {
+    letter-spacing: normal;
+  }
+  // .OutlinedInput
+  .MuiOutlinedInput-root {
+    font-family: 'Asap', sans-serif;
+  }
+  // .InputLabel
+  .MuiInputLabel-root {
+    font-family: 'Nunito', sans-serif;
+    color: #7e7e7e;
+  }
+  // .MuiOutlinedInput-input
+  .MuiOutlinedInput-input {
+    padding: 15.5px 16px;
+  }
+  // .MuiOutlinedInput-notchedOutline
+  .MuiOutlinedInput-notchedOutline {
+    border-color: #d0cfcf;
+  }
+  // .FormLabel
+  .MuiFormLabel-root {
+    font-family: 'Nunito', sans-serif;
+    color: rgba(#000, 0.87);
+    letter-spacing: normal;
+  }
+  // .FormControlLabel
+  .MuiFormControlLabel-root {
+    margin-right: 0px !important;
+    margin-left: -5px !important;
+    // .MuiFormControlLabel-label
+    & .MuiFormControlLabel-label {
+      position: relative;
+      top: 0.5px;
+      padding-left: 8px;
+      font-family: 'Nunito', sans-serif;
+      line-height: 162%;
+      letter-spacing: normal;
+    }
+  }
+  // .FormGroup
   .MuiFormGroup-root {
     margin-top: 7px;
   }
+  // .Radio Button
   .MuiRadio-root {
     padding: 4px;
     color: #d0cfcf;
