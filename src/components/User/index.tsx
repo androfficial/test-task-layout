@@ -1,4 +1,6 @@
+import Plug from 'assets/images/users/plug.svg';
 import { useEffect, useRef, useState } from 'react';
+import { Img } from 'react-image';
 import { formatPhone } from 'services/formatPhone';
 import { ISetUsers } from 'types/global/users';
 
@@ -28,7 +30,7 @@ const User = ({
   return (
     <article className='users__item item-user'>
       <a href={`/${id}`} className='item-user__avatar'>
-        <img src={photo} alt={name} />
+        <Img src={[photo, Plug]} alt={name} />
       </a>
       <div className='item-user__body'>
         <h5 className='item-user__name h2'>{name}</h5>
