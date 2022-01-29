@@ -96,6 +96,7 @@ const Register = () => {
                 id='outlined-basic'
                 variant='outlined'
                 placeholder='Upload your photo'
+                focused={false}
                 classes={{ root: 'form__input' }}
                 InputProps={{
                   readOnly: true,

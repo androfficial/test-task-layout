@@ -50,13 +50,15 @@
   &:disabled {
     color: #fff;
     pointer-events: none;
-    background-color: #b4b4b4;
   }
 }
 .btn--yellow {
   background-color: $primaryColor;
   &.disabled {
     display: none;
+  }
+  &:disabled {
+    background-color: #b4b4b4;
   }
   @media (hover: hover) {
     &:not(:active):not(:focus):not(:disabled):hover {
