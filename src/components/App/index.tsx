@@ -1,4 +1,12 @@
-import { Acquaintance, Footer, Header, Intro, Register, Users } from '..';
+import {
+  Acquaintance,
+  CatFootprints,
+  Footer,
+  Header,
+  Intro,
+  Register,
+  Users,
+} from '..';
 
 const App = () => {
   return (
@@ -9,6 +17,7 @@ const App = () => {
         <Acquaintance />
         <Users />
         <Register />
+        <CatFootprints />
       </main>
       <Footer />
     </>
