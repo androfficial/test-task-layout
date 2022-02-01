@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { textTransform } from 'services/textTransform';
 import { fetchUsers, setIsLoaded } from 'store/actions/users';
-import { ISetUsers } from 'types/global/users';
+import { ISetUsers } from 'types/users';
 
 const Users = () => {
   const dispatch = useDispatch();

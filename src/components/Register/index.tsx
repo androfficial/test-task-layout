@@ -6,9 +6,23 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import useTypesSelector from 'hooks/useTypesSelector';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { textTransform } from 'services/textTransform';
+import { fetchUsersPositions } from 'store/actions/users';
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const [usersPositions, isLoaded] = useTypesSelector(({ users }) => [
+    users.usersPositions,
+    users.isLoaded,
+  ]);
+
+  useEffect(() => {
+    dispatch(fetchUsersPositions());
+  }, [dispatch]);
+
   return (
     <section className='page__register register'>
       <div className='register__container container'>
@@ -29,7 +43,7 @@ const Register = () => {
         </div>
         <div className='register__body'>
           <form action='' className='register__form form' method='POST'>
-            <div className='form__input-fields'>
+            <fieldset className='form__input-fields'>
               <TextField
                 id='outlined-basic'
                 label='Your name'
@@ -48,7 +62,7 @@ const Register = () => {
                 variant='outlined'
                 fullWidth
               />
-            </div>
+            </fieldset>
             <div className='form__select-position'>
               <FormLabel id='demo-radio-buttons-group-label'>
                 Select your position
@@ -58,26 +72,15 @@ const Register = () => {
                 defaultValue='Frontend developer'
                 name='radio-buttons-group'
               >
-                <FormControlLabel
-                  value='Frontend developer'
-                  control={<Radio size='small' />}
-                  label='Frontend developer'
-                />
-                <FormControlLabel
-                  value='Backend developer'
-                  control={<Radio size='small' />}
-                  label='Backend developer'
-                />
-                <FormControlLabel
-                  value='Designer'
-                  control={<Radio size='small' />}
-                  label='Designer'
-                />
-                <FormControlLabel
-                  value='QA'
-                  control={<Radio size='small' />}
-                  label='QA'
-                />
+                {usersPositions &&
+                  usersPositions.map(({ id, name }) => (
+                    <FormControlLabel
+                      key={id}
+                      value={name}
+                      control={<Radio size='small' />}
+                      label={name}
+                    />
+                  ))}
               </RadioGroup>
             </div>
             <div className='form__upload-photo photo-upload'>

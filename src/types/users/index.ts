@@ -1,5 +1,6 @@
 export enum Types {
   SET_USERS = 'USERS@SET:USERS',
+  SET_USERS_POSITIONS = 'USERS@SET:USERS_POSITIONS',
   SET_IS_LOADED = 'USERS@SET:IS_LOADED',
   SET_ERROR_API = 'USERS@SET:ERROR_API',
 }
@@ -30,9 +31,24 @@ export interface IGetUsers {
   users: ISetUsers[];
 }
 
+export interface IUsersPositions {
+  id: number;
+  name: string;
+}
+
+export interface IGetUsersPositions {
+  positions: IUsersPositions[];
+  success: boolean;
+}
+
 export interface ISetUsersAction {
   type: Types.SET_USERS;
   payload: IGetUsers;
+}
+
+export interface ISetUsersPositionsAction {
+  type: Types.SET_USERS_POSITIONS;
+  payload: IGetUsersPositions;
 }
 
 export interface ISetIsLoadedAction {
@@ -47,5 +63,6 @@ export interface ISetErrorApiAction {
 
 export type TUsersAction =
   | ISetUsersAction
+  | ISetUsersPositionsAction
   | ISetIsLoadedAction
   | ISetErrorApiAction;

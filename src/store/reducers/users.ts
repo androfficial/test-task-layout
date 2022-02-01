@@ -1,14 +1,15 @@
 /* eslint-disable default-param-last */
-
 import {
   IGetUsersLinks,
   ISetUsers,
+  IUsersPositions,
   TUsersAction,
   Types,
-} from 'types/global/users';
+} from 'types/users';
 
 const initialState = {
   users: [] as ISetUsers[],
+  usersPositions: [] as IUsersPositions[],
   currentPage: 0,
   totalPages: 0,
   totalUsers: 0,
@@ -38,6 +39,15 @@ const users = (
         pageSize: count,
         links,
         isLoaded: true,
+        success,
+      };
+    }
+    case Types.SET_USERS_POSITIONS: {
+      const { positions, success } = action.payload;
+
+      return {
+        ...state,
+        usersPositions: positions,
         success,
       };
     }

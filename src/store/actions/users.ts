@@ -1,10 +1,23 @@
 import { DEFAULT_USERS_PATH } from 'api/api';
+import { getUsersPosition } from 'api/rest/positions';
 import { getUsers } from 'api/rest/users';
 import { Dispatch } from 'redux';
-import { IGetUsers, TUsersAction, Types } from 'types/global/users';
+import {
+  IGetUsers,
+  IGetUsersPositions,
+  TUsersAction,
+  Types,
+} from 'types/users';
 
 export const setUsers = (payload: IGetUsers): TUsersAction => ({
   type: Types.SET_USERS,
+  payload,
+});
+
+export const setUsersPositions = (
+  payload: IGetUsersPositions
+): TUsersAction => ({
+  type: Types.SET_USERS_POSITIONS,
   payload,
 });
 
@@ -30,3 +43,12 @@ export const fetchUsers =
       dispatch(setErrorApi(true));
     }
   };
+
+export const fetchUsersPositions = () => async (dispatch: TUsersDispatch) => {
+  const response = await getUsersPosition();
+  if (response) {
+    dispatch(setUsersPositions(response));
+  } else {
+    dispatch(setErrorApi(true));
+  }
+};

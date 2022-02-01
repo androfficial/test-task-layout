@@ -1,10 +1,9 @@
 import Plug from 'assets/images/users/plug.svg';
+import { MainTooltip } from 'components';
 import { useEffect, useRef, useState } from 'react';
 import { Img } from 'react-image';
 import { formatPhone } from 'services/formatPhone';
-import { ISetUsers } from 'types/global/users';
-
-import { MainTooltip } from '..';
+import { ISetUsers } from 'types/users';
 
 const User = ({
   id,

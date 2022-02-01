@@ -1,10 +1,11 @@
 // import { catchError } from 'api/config';
+import { instance } from 'api/instance';
 import axios, { AxiosError } from 'axios';
-import { IGetUsers } from 'types/users';
+import { IGetUsersPositions } from 'types/users';
 
-export const getUsers = async (path: string) => {
+export const getUsersPosition = async () => {
   try {
-    const { data } = await axios.get<IGetUsers>(path);
+    const { data } = await instance.get<IGetUsersPositions>('/positions');
 
     return data;
   } catch (error: unknown | AxiosError) {
