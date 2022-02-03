@@ -37,6 +37,17 @@
 .form {
   display: flex;
   flex-direction: column;
+  // .MuiOutlinedInput-root
+  .MuiOutlinedInput-root {
+    // .Mui-focused.Mui-error fieldset
+    &.Mui-focused.Mui-error fieldset {
+      border-color: #cb3d40;
+    }
+  }
+  // .MuiOutlinedInput-input
+  .MuiOutlinedInput-input {
+    padding: 15.5px 16px;
+  }
   // .form__input-fields
   &__input-fields {
     display: grid;
@@ -46,7 +57,7 @@
     // .MuiFormControl-root
     .MuiFormControl-root {
       // .MuiFormLabel-root.Mui-focused
-      .MuiFormLabel-root.Mui-focused {
+      .MuiFormLabel-root.Mui-focused:not(.Mui-error) {
         color: #00bdd3;
       }
       // .MuiFormLabel-root.Mui-disabled
@@ -54,19 +65,19 @@
         color: #bcbcbc;
       }
     }
-    // .OutlinedInput, .InputLabel
+    // .MuiOutlinedInput-root, .MuiInputLabel-root
     .MuiOutlinedInput-root,
     .MuiInputLabel-root {
       letter-spacing: normal;
     }
-    // .OutlinedInput-root
+    // .MuiOutlinedInput-root
     .MuiOutlinedInput-root {
       font-family: 'Asap', sans-serif;
-      // .Mui-focused fieldset
-      &.Mui-focused fieldset {
+      // .Mui-focused:not(.Mui-error) fieldset
+      &.Mui-focused:not(.Mui-error) fieldset {
         border-color: #00bdd3;
       }
-      // ..Mui-disabled fieldset
+      // .Mui-disabled fieldset
       &.Mui-disabled fieldset {
         border-color: #bcbcbc;
       }
@@ -76,42 +87,9 @@
       font-family: 'Nunito', sans-serif;
       color: #7e7e7e;
     }
-    // .MuiOutlinedInput-input
-    .MuiOutlinedInput-input {
-      padding: 15.5px 16px;
-    }
     // .MuiOutlinedInput-notchedOutline
     .MuiOutlinedInput-notchedOutline {
       border-color: #d0cfcf;
-    }
-  }
-  // .form__input
-  &__input {
-    // .MuiOutlinedInput-root
-    .MuiOutlinedInput-root {
-      border-top-left-radius: 0px;
-      border-bottom-left-radius: 0px;
-      // .Mui-disabled fieldset
-      &.Mui-disabled fieldset {
-        border-color: #d0cfcf;
-      }
-      // .MuiOutlinedInput-input
-      .MuiOutlinedInput-input {
-        cursor: default;
-        &::placeholder {
-          font-family: 'Nunito', sans-serif;
-          color: #7e7e7e;
-          opacity: 1;
-        }
-        // .Mui-disabled
-        &.Mui-disabled {
-          -webkit-text-fill-color: #d0cfcf;
-        }
-      }
-      // .MuiOutlinedInput-notchedOutline
-      .MuiOutlinedInput-notchedOutline {
-        border-left-width: 0px;
-      }
     }
   }
   // .form__select-position
@@ -169,28 +147,78 @@
 }
 .photo-upload {
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
+  // .MuiOutlinedInput-root
+  .MuiOutlinedInput-root {
+    // .Mui-disabled fieldset
+    &.Mui-disabled fieldset {
+      border-color: #d0cfcf;
+    }
+    // .Mui-focused.Mui-error fieldset
+    &.Mui-error fieldset {
+      border-width: 2px;
+    }
+    // .MuiOutlinedInput-input
+    .MuiOutlinedInput-input {
+      font-family: 'Asap', sans-serif;
+      &::placeholder {
+        font-family: 'Asap', sans-serif;
+        color: #7e7e7e;
+        opacity: 1;
+      }
+      // .Mui-disabled
+      &.Mui-disabled {
+        -webkit-text-fill-color: #d0cfcf;
+      }
+    }
+  }
   // .photo-upload__btn-wrapper
   &__btn-wrapper {
     position: relative;
-  }
-  // .photo-upload__btn
-  &__btn {
+    flex: 0 0 83px;
     width: 83px;
-    min-width: 0;
-    height: 100%;
-    padding: 0px 14px 0px 16px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 16px;
-    line-height: 162%;
-    color: rgba(#000, 0.87);
-    border: 1px solid rgba(#000, 0.87);
-    border-radius: 4px 0px 0px 4px;
-    &:disabled {
-      color: #d0cfcf;
-      border-color: #d0cfcf;
-      ~ .photo-upload__input {
-        display: none;
+    // .MuiFormControl-root
+    .MuiFormControl-root {
+      .MuiFormHelperText-root.Mui-error {
+        position: absolute;
+        top: 100%;
+        width: calc(100% + 267px);
+      }
+    }
+    // .MuiOutlinedInput-root
+    .MuiOutlinedInput-root {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      // .MuiOutlinedInput-input
+      .MuiOutlinedInput-input {
+        &::placeholder {
+          font-size: 16px;
+          color: rgba(#000, 0.87);
+        }
+      }
+      // .MuiOutlinedInput-notchedOutline
+      .MuiOutlinedInput-notchedOutline {
+        border-color: rgba(#000, 0.87);
+      }
+    }
+  }
+  // .photo-upload__input-text
+  &__input-text {
+    // .MuiOutlinedInput-root
+    .MuiOutlinedInput-root {
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      // .Mui-error fieldset
+      &.Mui-error fieldset {
+        border-left-width: 0px;
+      }
+      // .MuiOutlinedInput-input
+      .MuiOutlinedInput-input {
+        cursor: default;
+      }
+      // .MuiOutlinedInput-notchedOutline
+      .MuiOutlinedInput-notchedOutline {
+        border-left-width: 0px;
       }
     }
   }
@@ -205,4 +233,14 @@
     cursor: pointer;
     opacity: 0;
   }
+}
+// .MuiFormHelperText-root.Mui-error.Mui-required
+.MuiFormHelperText-root.Mui-error {
+  margin-top: 4px;
+  margin-right: 15px;
+  margin-left: 15px;
+  font-family: 'Asap', sans-serif;
+  line-height: 140%;
+  color: #cb3d40 !important;
+  letter-spacing: normal;
 }
