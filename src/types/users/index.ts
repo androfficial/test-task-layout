@@ -1,7 +1,9 @@
 export enum Types {
   SET_USERS = 'USERS@SET:USERS',
-  SET_USERS_POSITIONS = 'USERS@SET:USERS_POSITIONS',
+  SET_USER_POSITIONS = 'USERS@SET:USER_POSITIONS',
+  SET_IS_USER_REGISTERED = 'USERS@SET:IS_USER_REGISTERED',
   SET_IS_LOADED = 'USERS@SET:IS_LOADED',
+  SET_SHOW_MODAL = 'USERS@SET:SHOW_MODAL',
   SET_ERROR_API = 'USERS@SET:ERROR_API',
 }
 
@@ -29,15 +31,16 @@ export interface IGetUsers {
   total_pages: number;
   total_users: number;
   users: ISetUsers[];
+  update?: boolean;
 }
 
-export interface IUsersPositions {
+export interface IUserPositions {
   id: number;
   name: string;
 }
 
 export interface IGetUsersPositions {
-  positions: IUsersPositions[];
+  positions: IUserPositions[];
   success: boolean;
 }
 
@@ -46,13 +49,23 @@ export interface ISetUsersAction {
   payload: IGetUsers;
 }
 
-export interface ISetUsersPositionsAction {
-  type: Types.SET_USERS_POSITIONS;
+export interface ISetUserPositionsAction {
+  type: Types.SET_USER_POSITIONS;
   payload: IGetUsersPositions;
+}
+
+export interface ISetIsUserRegisteredAction {
+  type: Types.SET_IS_USER_REGISTERED;
+  payload: boolean;
 }
 
 export interface ISetIsLoadedAction {
   type: Types.SET_IS_LOADED;
+  payload: boolean;
+}
+
+export interface ISetShowModalAction {
+  type: Types.SET_SHOW_MODAL;
   payload: boolean;
 }
 
@@ -63,6 +76,8 @@ export interface ISetErrorApiAction {
 
 export type TUsersAction =
   | ISetUsersAction
-  | ISetUsersPositionsAction
+  | ISetUserPositionsAction
+  | ISetIsUserRegisteredAction
   | ISetIsLoadedAction
+  | ISetShowModalAction
   | ISetErrorApiAction;

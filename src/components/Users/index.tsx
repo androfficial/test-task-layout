@@ -1,4 +1,5 @@
 import { Typography } from '@mui/material';
+import { DEFAULT_USERS_PATH } from 'api/api';
 import cn from 'classnames';
 import { User } from 'components';
 import useTypesSelector from 'hooks/useTypesSelector';
@@ -10,11 +11,14 @@ import { ISetUsers } from 'types/users';
 
 const Users = () => {
   const dispatch = useDispatch();
-  const [users, links, isLoaded] = useTypesSelector(({ users }) => [
-    users.users,
-    users.links,
-    users.isLoaded,
-  ]);
+  const [users, links, isUserRegistered, isLoaded] = useTypesSelector(
+    ({ users }) => [
+      users.users,
+      users.links,
+      users.isUserRegistered,
+      users.isLoaded,
+    ]
+  );
 
   const handleButtonClick = (): void => {
     if (links.next_url) {
@@ -24,8 +28,14 @@ const Users = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(fetchUsers(DEFAULT_USERS_PATH));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isUserRegistered) {
+      dispatch(fetchUsers(DEFAULT_USERS_PATH, true));
+    }
+  }, [dispatch, isUserRegistered]);
 
   return (
     <section className='page__users users'>

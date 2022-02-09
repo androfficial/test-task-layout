@@ -4,6 +4,7 @@ import {
   Footer,
   Header,
   Intro,
+  Modal,
   Register,
   Users,
 } from '..';
@@ -20,6 +21,7 @@ const App = () => {
         <CatFootprints />
       </main>
       <Footer />
+      <Modal />
     </>
   );
 };

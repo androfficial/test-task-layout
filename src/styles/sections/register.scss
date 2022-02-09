@@ -232,6 +232,10 @@
     font-size: 0;
     cursor: pointer;
     opacity: 0;
+    &:disabled {
+      pointer-events: none;
+      cursor: default;
+    }
   }
 }
 // .MuiFormHelperText-root.Mui-error.Mui-required

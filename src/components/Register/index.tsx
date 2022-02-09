@@ -13,22 +13,22 @@ import useTypesSelector from 'hooks/useTypesSelector';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { textTransform } from 'services/textTransform';
-import { fetchUsersPositions } from 'store/actions/users';
-import * as Yup from 'yup';
+import {
+  fetchUser,
+  fetchUsersPositions,
+  setIsUserRegistered,
+} from 'store/actions/users';
+import { FormValues } from 'types/formik';
+import { userAddingScheme } from 'validationSchemes/userAddingScheme';
 
 const Register = () => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState('');
-  const [usersPositions, isLoaded] = useTypesSelector(({ users }) => [
-    users.usersPositions,
-    users.isLoaded,
-  ]);
+  const [userPositions, isUserRegistered, isLoaded] = useTypesSelector(
+    ({ users }) => [users.userPositions, users.isUserRegistered, users.isLoaded]
+  );
 
-  const emailRegex =
-    /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
-  const phoneRegex = /^[\+]{0,1}380([0-9]{9})$/;
-
-  const formik = useFormik({
+  const formik = useFormik<FormValues>({
     initialValues: {
       name: '',
       email: '',
@@ -36,67 +36,29 @@ const Register = () => {
       position_id: 1,
       photo: null,
     },
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .min(2, 'Name must contain at least 2 characters')
-        .max(60, 'Name cannot contain more than 60 characters')
-        .required('Name is a required field'),
-      email: Yup.string()
-        .matches(emailRegex, 'Mail is not valid')
-        .required('Mail is required field'),
-      phone: Yup.string()
-        .matches(phoneRegex, 'Phone number is not valid')
-        .required('Number must start with +380'),
-      photo: Yup.mixed()
-        // .test(
-        //   'MinimumSizeOfPhoto',
-        //   'Minimum size of photo 70x70 pixels',
-        //   (value) => {
-        //     return new Promise((resolve) => {
-        //       const reader = new FileReader();
-        //       reader.readAsDataURL(value);
-        //       reader.onload = function (value) {
-        //         const img = new Image();
-        //         img.src = value.target.result;
-        //         img.onload = function () {
-        //           console.log(this.width);
-        //           console.log(this.height);
-        //           resolve(!!(this.width >= 70 && this.height >= 70));
-        //         };
-        //       };
-        //     });
-        //   }
-        // )
-        .test(
-          'type',
-          'Only the following formats are accepted: jpeg/jpg',
-          (value) => value && ['image/jpeg', 'image/jpg'].includes(value.type)
-        )
-        .test(
-          'fileSize',
-          'File size must not exceed 5 MB',
-          (value) => value && value.size <= 5 * 1024 * 1024
-        ),
-    }),
-    onSubmit: (values) => {
+    validationSchema: userAddingScheme,
+    onSubmit: (values, { resetForm }) => {
       console.log(values);
-      // const formData = new FormData();
-      // formData.append('name', values.name);
-      // formData.append('email', values.email);
-      // formData.append('phone', values.phone);
-      // formData.append('position_id', values.position_id);
-      // formData.append('photo', values.photo, values.photo.name);
-      // for (const [name, value] of formData) {
-      //   console.log(`${name} = ${value}`);
-      // }
+      const formData = new FormData();
+
+      // eslint-disable-next-line no-restricted-syntax
+      for (const [key, value] of Object.entries(values)) {
+        formData.append(key, value);
+      }
+
+      resetForm();
+      setSelectedFile('');
+      if (isUserRegistered) {
+        dispatch(setIsUserRegistered(false));
+      }
+      dispatch(fetchUser(formData));
     },
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    if (e.target.files) {
+    if (e.target.files?.length) {
       const file = e.target.files[0];
 
-      formik.setFieldTouched('photo', true);
       formik.setFieldValue('photo', file);
 
       const delFileExt = file.name.split('.')[0];
@@ -138,6 +100,7 @@ const Register = () => {
                 value={formik.values.name}
                 error={formik.touched.name && Boolean(formik.errors.name)}
                 helperText={formik.touched.name && formik.errors.name}
+                disabled={!isLoaded}
                 fullWidth
                 required
               />
@@ -150,6 +113,7 @@ const Register = () => {
                 value={formik.values.email}
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
+                disabled={!isLoaded}
                 fullWidth
                 required
               />
@@ -162,6 +126,7 @@ const Register = () => {
                 value={formik.values.phone}
                 error={formik.touched.phone && Boolean(formik.errors.phone)}
                 helperText={formik.touched.phone && formik.errors.phone}
+                disabled={!isLoaded}
                 fullWidth
                 required
               />
@@ -176,12 +141,12 @@ const Register = () => {
                 value={formik.values.position_id}
                 onChange={formik.handleChange}
               >
-                {usersPositions &&
-                  usersPositions.map(({ id, name }) => (
+                {userPositions &&
+                  userPositions.map(({ id, name }) => (
                     <FormControlLabel
                       key={id}
                       value={id}
-                      control={<Radio size='small' />}
+                      control={<Radio disabled={!isLoaded} size='small' />}
                       label={name}
                     />
                   ))}
@@ -198,6 +163,7 @@ const Register = () => {
                   }}
                   error={formik.touched.photo && Boolean(formik.errors.photo)}
                   helperText={formik.touched.photo && formik.errors.photo}
+                  disabled={!isLoaded}
                 />
                 <input
                   className='photo-upload__input'
@@ -205,6 +171,8 @@ const Register = () => {
                   name='photo'
                   accept='.jpeg, .jpg'
                   onChange={(e) => handleChange(e)}
+                  onBlur={formik.handleBlur}
+                  disabled={!isLoaded}
                 />
               </div>
               <TextField
@@ -217,6 +185,7 @@ const Register = () => {
                 classes={{ root: 'photo-upload__input-text' }}
                 value={selectedFile}
                 error={formik.touched.photo && Boolean(formik.errors.photo)}
+                disabled={!isLoaded}
                 fullWidth
               />
             </div>

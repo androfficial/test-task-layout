@@ -2,20 +2,22 @@
 import {
   IGetUsersLinks,
   ISetUsers,
-  IUsersPositions,
+  IUserPositions,
   TUsersAction,
   Types,
 } from 'types/users';
 
 const initialState = {
   users: [] as ISetUsers[],
-  usersPositions: [] as IUsersPositions[],
+  userPositions: [] as IUserPositions[],
+  isUserRegistered: false,
   currentPage: 0,
   totalPages: 0,
   totalUsers: 0,
   pageSize: 0,
   links: {} as IGetUsersLinks,
   isLoaded: false,
+  showModal: false,
   success: false,
 };
 
@@ -27,12 +29,20 @@ const users = (
 ): TUsersInitialState => {
   switch (action.type) {
     case Types.SET_USERS: {
-      const { count, links, page, success, total_pages, total_users, users } =
-        action.payload;
+      const {
+        count,
+        links,
+        page,
+        success,
+        total_pages,
+        total_users,
+        users,
+        update,
+      } = action.payload;
 
       return {
         ...state,
-        users: [...state.users, ...users],
+        users: update ? [...users] : [...state.users, ...users],
         currentPage: page,
         totalPages: total_pages,
         totalUsers: total_users,
@@ -42,19 +52,29 @@ const users = (
         success,
       };
     }
-    case Types.SET_USERS_POSITIONS: {
+    case Types.SET_USER_POSITIONS: {
       const { positions, success } = action.payload;
 
       return {
         ...state,
-        usersPositions: positions,
+        userPositions: positions,
         success,
       };
     }
+    case Types.SET_IS_USER_REGISTERED:
+      return {
+        ...state,
+        isUserRegistered: action.payload,
+      };
     case Types.SET_IS_LOADED:
       return {
         ...state,
         isLoaded: action.payload,
+      };
+    case Types.SET_SHOW_MODAL:
+      return {
+        ...state,
+        showModal: action.payload,
       };
     case Types.SET_ERROR_API:
       return {
