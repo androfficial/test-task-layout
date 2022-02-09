@@ -1,11 +1,12 @@
 /* eslint-disable default-param-last */
+
 import {
   IGetUsersLinks,
   ISetUsers,
   IUserPositions,
   TUsersAction,
   Types,
-} from 'types/users';
+} from '../../types/users';
 
 const initialState = {
   users: [] as ISetUsers[],

@@ -9,17 +9,18 @@ import {
   Typography,
 } from '@mui/material';
 import { useFormik } from 'formik';
-import useTypesSelector from 'hooks/useTypesSelector';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { textTransform } from 'services/textTransform';
+
+import { textTransform } from '../../helpers/textTransform';
+import { userAddingScheme } from '../../helpers/validationSchemes/userAddingScheme';
+import useTypesSelector from '../../hooks/useTypesSelector';
 import {
   fetchUser,
-  fetchUsersPositions,
+  fetchUserPositions,
   setIsUserRegistered,
-} from 'store/actions/users';
-import { FormValues } from 'types/formik';
-import { userAddingScheme } from 'validationSchemes/userAddingScheme';
+} from '../../store/actions/users';
+import { FormValues } from '../../types/formik';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchUsersPositions());
+    dispatch(fetchUserPositions());
   }, [dispatch]);
 
   return (

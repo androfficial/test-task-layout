@@ -1,5 +1,6 @@
 import { useMediaQuery } from 'react-responsive';
-import { textTransform } from 'services/textTransform';
+
+import { textTransform } from '../../helpers/textTransform';
 
 const Intro = () => {
   const isMobile = useMediaQuery({

@@ -2,10 +2,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import Logo from 'assets/images/logo.svg';
 import cn from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+
+import Logo from '../../assets/images/logo.svg';
 
 const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);

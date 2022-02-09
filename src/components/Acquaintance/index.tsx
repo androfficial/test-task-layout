@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Typography } from '@mui/material';
-import AcquaintanceImage from 'assets/images/acquaintance/acquaintance-image.svg';
-import { textTransform } from 'services/textTransform';
+
+import AcquaintanceImage from '../../assets/images/acquaintance/acquaintance-image.svg';
+import { textTransform } from '../../helpers/textTransform';
 
 const Acquaintance = () => {
   return (

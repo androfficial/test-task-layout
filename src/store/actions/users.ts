@@ -1,14 +1,12 @@
-import { getNewUser } from 'api/rest/newUser';
-import { getUsersPosition } from 'api/rest/positions';
-import { getToken } from 'api/rest/token';
-import { getUsers } from 'api/rest/users';
 import { Dispatch } from 'redux';
+
+import usersAPI from '../../api/api';
 import {
   IGetUsers,
   IGetUsersPositions,
   TUsersAction,
   Types,
-} from 'types/users';
+} from '../../types/users';
 
 export const setUsers = (payload: IGetUsers): TUsersAction => ({
   type: Types.SET_USERS,
@@ -45,9 +43,9 @@ export const setErrorApi = (payload: boolean): TUsersAction => ({
 type TUsersDispatch = Dispatch<TUsersAction>;
 
 export const fetchUsers =
-  (path: string, update = false) =>
+  (page = 1, count = 9, update = false) =>
   async (dispatch: TUsersDispatch) => {
-    const response = await getUsers(path);
+    const response = await usersAPI.getUsers(page, count);
     if (response) {
       response.update = update;
       dispatch(setUsers(response));
@@ -56,8 +54,8 @@ export const fetchUsers =
     }
   };
 
-export const fetchUsersPositions = () => async (dispatch: TUsersDispatch) => {
-  const response = await getUsersPosition();
+export const fetchUserPositions = () => async (dispatch: TUsersDispatch) => {
+  const response = await usersAPI.getUserPositions();
   if (response) {
     dispatch(setUserPositions(response));
   } else {
@@ -67,9 +65,9 @@ export const fetchUsersPositions = () => async (dispatch: TUsersDispatch) => {
 
 export const fetchUser =
   (userData: FormData) => async (dispatch: TUsersDispatch) => {
-    const token = await getToken();
-    if (token) {
-      const newUser = await getNewUser(userData, token);
+    const response = await usersAPI.getToken();
+    if (response) {
+      const newUser = await usersAPI.getNewUser(userData, response.token);
       if (newUser) {
         dispatch(setIsLoaded(true));
         dispatch(setShowModal(true));

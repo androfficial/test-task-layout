@@ -1,8 +1,9 @@
 import cn from 'classnames';
-import useTypesSelector from 'hooks/useTypesSelector';
 import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { setShowModal } from 'store/actions/users';
+
+import useTypesSelector from '../../hooks/useTypesSelector';
+import { setShowModal } from '../../store/actions/users';
 
 const Modal = () => {
   const dispatch = useDispatch();

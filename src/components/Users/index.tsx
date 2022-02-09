@@ -1,39 +1,41 @@
 import { Typography } from '@mui/material';
-import { DEFAULT_USERS_PATH } from 'api/api';
 import cn from 'classnames';
-import { User } from 'components';
-import useTypesSelector from 'hooks/useTypesSelector';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { textTransform } from 'services/textTransform';
-import { fetchUsers, setIsLoaded } from 'store/actions/users';
-import { ISetUsers } from 'types/users';
+
+import { textTransform } from '../../helpers/textTransform';
+import useTypesSelector from '../../hooks/useTypesSelector';
+import { fetchUsers, setIsLoaded } from '../../store/actions/users';
+import { ISetUsers } from '../../types/users';
+import { User } from '..';
 
 const Users = () => {
   const dispatch = useDispatch();
-  const [users, links, isUserRegistered, isLoaded] = useTypesSelector(
-    ({ users }) => [
+  const [users, links, isUserRegistered, currentPage, pageSize, isLoaded] =
+    useTypesSelector(({ users }) => [
       users.users,
       users.links,
       users.isUserRegistered,
+      users.currentPage,
+      users.pageSize,
       users.isLoaded,
-    ]
-  );
+    ]);
 
   const handleButtonClick = (): void => {
+    // Можно еще добавить в условие проверку на соответствие текущей страницы и totalPages
     if (links.next_url) {
       dispatch(setIsLoaded(false));
-      dispatch(fetchUsers(links.next_url));
+      dispatch(fetchUsers(currentPage + 1, pageSize));
     }
   };
 
   useEffect(() => {
-    dispatch(fetchUsers(DEFAULT_USERS_PATH));
+    dispatch(fetchUsers());
   }, [dispatch]);
 
   useEffect(() => {
     if (isUserRegistered) {
-      dispatch(fetchUsers(DEFAULT_USERS_PATH, true));
+      dispatch(fetchUsers(1, 6, true));
     }
   }, [dispatch, isUserRegistered]);
 
