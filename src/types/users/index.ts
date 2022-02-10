@@ -3,6 +3,7 @@ export enum Types {
   SET_USER_POSITIONS = 'USERS@SET:USER_POSITIONS',
   SET_IS_USER_REGISTERED = 'USERS@SET:IS_USER_REGISTERED',
   SET_IS_LOADED = 'USERS@SET:IS_LOADED',
+  SET_IS_SUBMITTED = 'USERS@SET:IS_SUBMITTED',
   SET_SHOW_MODAL = 'USERS@SET:SHOW_MODAL',
   SET_ERROR_API = 'USERS@SET:ERROR_API',
 }
@@ -64,6 +65,11 @@ export interface ISetIsLoadedAction {
   payload: boolean;
 }
 
+export interface ISetIsSubmittedAction {
+  type: Types.SET_IS_SUBMITTED;
+  payload: boolean;
+}
+
 export interface ISetShowModalAction {
   type: Types.SET_SHOW_MODAL;
   payload: boolean;
@@ -79,5 +85,6 @@ export type TUsersAction =
   | ISetUserPositionsAction
   | ISetIsUserRegisteredAction
   | ISetIsLoadedAction
+  | ISetIsSubmittedAction
   | ISetShowModalAction
   | ISetErrorApiAction;

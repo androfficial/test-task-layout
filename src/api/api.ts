@@ -12,7 +12,7 @@ const handleError = (error: unknown | AxiosError) => {
   if (axios.isAxiosError(error)) {
     console.error(error.response);
     return {
-      success: error.response?.data.success,
+      success: error.response?.data.success as boolean,
       message: error.response?.data.message,
     };
   }
@@ -29,8 +29,6 @@ const usersAPI = {
       const { data } = await instance.get<IGetUsers>(
         `/users?page=${page}&count=${count}`
       );
-
-      console.log(data);
 
       return data;
     } catch (error: unknown | AxiosError) {

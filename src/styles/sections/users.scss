@@ -12,6 +12,11 @@
       margin-bottom: 32px;
     }
   }
+  // .users__preloader
+  &__preloader {
+    width: 80px;
+    height: 80px;
+  }
   // .users__list
   &__list {
     display: grid;

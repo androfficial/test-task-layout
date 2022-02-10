@@ -18,6 +18,7 @@ const initialState = {
   pageSize: 0,
   links: {} as IGetUsersLinks,
   isLoaded: false,
+  isSubmitted: false,
   showModal: false,
   success: false,
 };
@@ -71,6 +72,11 @@ const users = (
       return {
         ...state,
         isLoaded: action.payload,
+      };
+    case Types.SET_IS_SUBMITTED:
+      return {
+        ...state,
+        isSubmitted: action.payload,
       };
     case Types.SET_SHOW_MODAL:
       return {

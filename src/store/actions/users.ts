@@ -30,6 +30,11 @@ export const setIsLoaded = (payload: boolean): TUsersAction => ({
   payload,
 });
 
+export const setIsSubmitted = (payload: boolean): TUsersAction => ({
+  type: Types.SET_IS_SUBMITTED,
+  payload,
+});
+
 export const setShowModal = (payload: boolean): TUsersAction => ({
   type: Types.SET_SHOW_MODAL,
   payload,
@@ -46,7 +51,7 @@ export const fetchUsers =
   (page = 1, count = 9, update = false) =>
   async (dispatch: TUsersDispatch) => {
     const response = await usersAPI.getUsers(page, count);
-    if (response) {
+    if (response.success) {
       response.update = update;
       dispatch(setUsers(response));
     } else {
@@ -65,17 +70,17 @@ export const fetchUserPositions = () => async (dispatch: TUsersDispatch) => {
 
 export const fetchUser =
   (userData: FormData) => async (dispatch: TUsersDispatch) => {
+    dispatch(setIsSubmitted(true));
     const response = await usersAPI.getToken();
-    if (response) {
+    if (response.success) {
       const newUser = await usersAPI.getNewUser(userData, response.token);
-      if (newUser) {
-        dispatch(setIsLoaded(true));
+      if (newUser.success) {
+        dispatch(setIsSubmitted(false));
         dispatch(setShowModal(true));
         dispatch(setIsUserRegistered(true));
       } else {
+        dispatch(setIsSubmitted(false));
         dispatch(setErrorApi(true));
       }
-    } else {
-      console.error('Не удалось получить токен');
     }
   };

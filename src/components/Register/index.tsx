@@ -1,5 +1,3 @@
-/* eslint-disable react/no-this-in-sfc */
-/* eslint-disable func-names */
 import {
   FormControlLabel,
   FormLabel,
@@ -25,8 +23,12 @@ import { FormValues } from '../../types/formik';
 const Register = () => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState('');
-  const [userPositions, isUserRegistered, isLoaded] = useTypesSelector(
-    ({ users }) => [users.userPositions, users.isUserRegistered, users.isLoaded]
+  const [userPositions, isUserRegistered, isSubmitted] = useTypesSelector(
+    ({ users }) => [
+      users.userPositions,
+      users.isUserRegistered,
+      users.isSubmitted,
+    ]
   );
 
   const formik = useFormik<FormValues>({
@@ -38,7 +40,7 @@ const Register = () => {
       photo: null,
     },
     validationSchema: userAddingScheme,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       console.log(values);
       const formData = new FormData();
 
@@ -47,11 +49,10 @@ const Register = () => {
         formData.append(key, value);
       }
 
-      resetForm();
-      setSelectedFile('');
       if (isUserRegistered) {
         dispatch(setIsUserRegistered(false));
       }
+
       dispatch(fetchUser(formData));
     },
   });
@@ -70,6 +71,14 @@ const Register = () => {
   useEffect(() => {
     dispatch(fetchUserPositions());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isUserRegistered) {
+      formik.resetForm();
+      setSelectedFile('');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isUserRegistered]);
 
   return (
     <section className='page__register register'>
@@ -101,7 +110,7 @@ const Register = () => {
                 value={formik.values.name}
                 error={formik.touched.name && Boolean(formik.errors.name)}
                 helperText={formik.touched.name && formik.errors.name}
-                disabled={!isLoaded}
+                disabled={isSubmitted}
                 fullWidth
                 required
               />
@@ -114,7 +123,7 @@ const Register = () => {
                 value={formik.values.email}
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
-                disabled={!isLoaded}
+                disabled={isSubmitted}
                 fullWidth
                 required
               />
@@ -127,7 +136,7 @@ const Register = () => {
                 value={formik.values.phone}
                 error={formik.touched.phone && Boolean(formik.errors.phone)}
                 helperText={formik.touched.phone && formik.errors.phone}
-                disabled={!isLoaded}
+                disabled={isSubmitted}
                 fullWidth
                 required
               />
@@ -147,7 +156,7 @@ const Register = () => {
                     <FormControlLabel
                       key={id}
                       value={id}
-                      control={<Radio disabled={!isLoaded} size='small' />}
+                      control={<Radio disabled={isSubmitted} size='small' />}
                       label={name}
                     />
                   ))}
@@ -164,7 +173,7 @@ const Register = () => {
                   }}
                   error={formik.touched.photo && Boolean(formik.errors.photo)}
                   helperText={formik.touched.photo && formik.errors.photo}
-                  disabled={!isLoaded}
+                  disabled={isSubmitted}
                 />
                 <input
                   className='photo-upload__input'
@@ -173,7 +182,7 @@ const Register = () => {
                   accept='.jpeg, .jpg'
                   onChange={(e) => handleChange(e)}
                   onBlur={formik.handleBlur}
-                  disabled={!isLoaded}
+                  disabled={isSubmitted}
                 />
               </div>
               <TextField
@@ -186,7 +195,7 @@ const Register = () => {
                 classes={{ root: 'photo-upload__input-text' }}
                 value={selectedFile}
                 error={formik.touched.photo && Boolean(formik.errors.photo)}
-                disabled={!isLoaded}
+                disabled={isSubmitted}
                 fullWidth
               />
             </div>

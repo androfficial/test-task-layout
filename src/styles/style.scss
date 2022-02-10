@@ -54,6 +54,8 @@ body {
 
 // <ПОДКЛЮЧЕНИЕ ГОТОВЫХ КЛАССОВ>========================================
 @import 'blocks/ui';
+@import 'blocks/modal';
+@import 'blocks/preloader';
 
 // === <ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ> =================
 @import 'blocks/header';
@@ -63,7 +65,6 @@ body {
 @import 'sections/register';
 @import 'blocks/cat-footprints';
 @import 'blocks/footer';
-@import 'blocks/modal';
 
 // === <ОСНОВНОЙ БЛОК> =================================================
 .page {

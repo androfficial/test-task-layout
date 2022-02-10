@@ -7,7 +7,7 @@ import { textTransform } from '../../helpers/textTransform';
 import useTypesSelector from '../../hooks/useTypesSelector';
 import { fetchUsers, setIsLoaded } from '../../store/actions/users';
 import { ISetUsers } from '../../types/users';
-import { User } from '..';
+import { Preloader, User } from '..';
 
 const Users = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,6 @@ const Users = () => {
     ]);
 
   const handleButtonClick = (): void => {
-    // Можно еще добавить в условие проверку на соответствие текущей страницы и totalPages
     if (links.next_url) {
       dispatch(setIsLoaded(false));
       dispatch(fetchUsers(currentPage + 1, pageSize));
@@ -54,10 +53,15 @@ const Users = () => {
             {textTransform('The best specialists are shown below', 36)}
           </h3>
         </div>
-        <div className='users__list'>
-          {users &&
-            users.map((obj: ISetUsers) => <User key={obj.id} {...obj} />)}
-        </div>
+        {isLoaded ? (
+          <div className='users__list'>
+            {users.map((obj: ISetUsers) => (
+              <User key={obj.id} {...obj} />
+            ))}
+          </div>
+        ) : (
+          <Preloader addClass='users__preloader' />
+        )}
         <div className='users__bottom bottom-users'>
           <button
             onClick={handleButtonClick}
