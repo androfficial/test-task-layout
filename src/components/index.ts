@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 export { default as Acquaintance } from './Acquaintance';
 export { default as CatFootprints } from './CatFootprints';
 export { default as Footer } from './Footer';

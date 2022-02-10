@@ -23,11 +23,11 @@ import { FormValues } from '../../types/formik';
 const Register = () => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState('');
-  const [userPositions, isUserRegistered, isSubmitted] = useTypesSelector(
+  const [userPositions, isUserRegistered, isSubmitting] = useTypesSelector(
     ({ users }) => [
       users.userPositions,
       users.isUserRegistered,
-      users.isSubmitted,
+      users.isSubmitting,
     ]
   );
 
@@ -41,7 +41,6 @@ const Register = () => {
     },
     validationSchema: userAddingScheme,
     onSubmit: (values) => {
-      console.log(values);
       const formData = new FormData();
 
       // eslint-disable-next-line no-restricted-syntax
@@ -110,7 +109,7 @@ const Register = () => {
                 value={formik.values.name}
                 error={formik.touched.name && Boolean(formik.errors.name)}
                 helperText={formik.touched.name && formik.errors.name}
-                disabled={isSubmitted}
+                disabled={isSubmitting}
                 fullWidth
                 required
               />
@@ -123,7 +122,7 @@ const Register = () => {
                 value={formik.values.email}
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
-                disabled={isSubmitted}
+                disabled={isSubmitting}
                 fullWidth
                 required
               />
@@ -136,7 +135,7 @@ const Register = () => {
                 value={formik.values.phone}
                 error={formik.touched.phone && Boolean(formik.errors.phone)}
                 helperText={formik.touched.phone && formik.errors.phone}
-                disabled={isSubmitted}
+                disabled={isSubmitting}
                 fullWidth
                 required
               />
@@ -156,7 +155,7 @@ const Register = () => {
                     <FormControlLabel
                       key={id}
                       value={id}
-                      control={<Radio disabled={isSubmitted} size='small' />}
+                      control={<Radio disabled={isSubmitting} size='small' />}
                       label={name}
                     />
                   ))}
@@ -173,7 +172,7 @@ const Register = () => {
                   }}
                   error={formik.touched.photo && Boolean(formik.errors.photo)}
                   helperText={formik.touched.photo && formik.errors.photo}
-                  disabled={isSubmitted}
+                  disabled={isSubmitting}
                 />
                 <input
                   className='photo-upload__input'
@@ -182,7 +181,7 @@ const Register = () => {
                   accept='.jpeg, .jpg'
                   onChange={(e) => handleChange(e)}
                   onBlur={formik.handleBlur}
-                  disabled={isSubmitted}
+                  disabled={isSubmitting}
                 />
               </div>
               <TextField
@@ -195,7 +194,7 @@ const Register = () => {
                 classes={{ root: 'photo-upload__input-text' }}
                 value={selectedFile}
                 error={formik.touched.photo && Boolean(formik.errors.photo)}
-                disabled={isSubmitted}
+                disabled={isSubmitting}
                 fullWidth
               />
             </div>

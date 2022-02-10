@@ -3,9 +3,9 @@ export enum Types {
   SET_USER_POSITIONS = 'USERS@SET:USER_POSITIONS',
   SET_IS_USER_REGISTERED = 'USERS@SET:IS_USER_REGISTERED',
   SET_IS_LOADED = 'USERS@SET:IS_LOADED',
-  SET_IS_SUBMITTED = 'USERS@SET:IS_SUBMITTED',
+  SET_IS_SUBMITTING = 'USERS@SET:IS_SUBMITTING',
   SET_SHOW_MODAL = 'USERS@SET:SHOW_MODAL',
-  SET_ERROR_API = 'USERS@SET:ERROR_API',
+  SET_API_ERROR = 'USERS@SET:API_ERROR',
 }
 
 export interface IGetUsersLinks {
@@ -32,7 +32,6 @@ export interface IGetUsers {
   total_pages: number;
   total_users: number;
   users: ISetUsers[];
-  update?: boolean;
 }
 
 export interface IUserPositions {
@@ -47,7 +46,7 @@ export interface IGetUsersPositions {
 
 export interface ISetUsersAction {
   type: Types.SET_USERS;
-  payload: IGetUsers;
+  payload: { data: IGetUsers; update: boolean };
 }
 
 export interface ISetUserPositionsAction {
@@ -65,8 +64,8 @@ export interface ISetIsLoadedAction {
   payload: boolean;
 }
 
-export interface ISetIsSubmittedAction {
-  type: Types.SET_IS_SUBMITTED;
+export interface ISetIsSubmittingAction {
+  type: Types.SET_IS_SUBMITTING;
   payload: boolean;
 }
 
@@ -75,8 +74,8 @@ export interface ISetShowModalAction {
   payload: boolean;
 }
 
-export interface ISetErrorApiAction {
-  type: Types.SET_ERROR_API;
+export interface ISetApiErrorAction {
+  type: Types.SET_API_ERROR;
   payload: boolean;
 }
 
@@ -85,6 +84,6 @@ export type TUsersAction =
   | ISetUserPositionsAction
   | ISetIsUserRegisteredAction
   | ISetIsLoadedAction
-  | ISetIsSubmittedAction
+  | ISetIsSubmittingAction
   | ISetShowModalAction
-  | ISetErrorApiAction;
+  | ISetApiErrorAction;

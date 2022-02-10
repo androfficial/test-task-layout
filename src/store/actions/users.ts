@@ -8,9 +8,9 @@ import {
   Types,
 } from '../../types/users';
 
-export const setUsers = (payload: IGetUsers): TUsersAction => ({
+export const setUsers = (data: IGetUsers, update: boolean): TUsersAction => ({
   type: Types.SET_USERS,
-  payload,
+  payload: { data, update },
 });
 
 export const setUserPositions = (
@@ -30,8 +30,8 @@ export const setIsLoaded = (payload: boolean): TUsersAction => ({
   payload,
 });
 
-export const setIsSubmitted = (payload: boolean): TUsersAction => ({
-  type: Types.SET_IS_SUBMITTED,
+export const setIsSubmitting = (payload: boolean): TUsersAction => ({
+  type: Types.SET_IS_SUBMITTING,
   payload,
 });
 
@@ -40,8 +40,8 @@ export const setShowModal = (payload: boolean): TUsersAction => ({
   payload,
 });
 
-export const setErrorApi = (payload: boolean): TUsersAction => ({
-  type: Types.SET_ERROR_API,
+export const setApiError = (payload: boolean): TUsersAction => ({
+  type: Types.SET_API_ERROR,
   payload,
 });
 
@@ -51,11 +51,11 @@ export const fetchUsers =
   (page = 1, count = 9, update = false) =>
   async (dispatch: TUsersDispatch) => {
     const response = await usersAPI.getUsers(page, count);
-    if (response.success) {
-      response.update = update;
-      dispatch(setUsers(response));
+    if (response) {
+      dispatch(setUsers(response, update));
     } else {
-      dispatch(setErrorApi(true));
+      dispatch(setIsLoaded(false));
+      dispatch(setApiError(true));
     }
   };
 
@@ -64,23 +64,23 @@ export const fetchUserPositions = () => async (dispatch: TUsersDispatch) => {
   if (response) {
     dispatch(setUserPositions(response));
   } else {
-    dispatch(setErrorApi(true));
+    dispatch(setApiError(true));
   }
 };
 
 export const fetchUser =
   (userData: FormData) => async (dispatch: TUsersDispatch) => {
-    dispatch(setIsSubmitted(true));
+    dispatch(setIsSubmitting(true));
     const response = await usersAPI.getToken();
-    if (response.success) {
+    if (response) {
       const newUser = await usersAPI.getNewUser(userData, response.token);
-      if (newUser.success) {
-        dispatch(setIsSubmitted(false));
+      if (newUser) {
+        dispatch(setIsSubmitting(false));
         dispatch(setShowModal(true));
         dispatch(setIsUserRegistered(true));
       } else {
-        dispatch(setIsSubmitted(false));
-        dispatch(setErrorApi(true));
+        dispatch(setIsSubmitting(false));
+        dispatch(setApiError(true));
       }
     }
   };

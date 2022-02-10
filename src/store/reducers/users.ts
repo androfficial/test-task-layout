@@ -11,16 +11,37 @@ import {
 const initialState = {
   users: [] as ISetUsers[],
   userPositions: [] as IUserPositions[],
-  isUserRegistered: false,
   currentPage: 0,
   totalPages: 0,
   totalUsers: 0,
   pageSize: 0,
   links: {} as IGetUsersLinks,
+  isUserRegistered: false,
   isLoaded: false,
-  isSubmitted: false,
+  isSubmitting: false,
   showModal: false,
-  success: false,
+  success: true,
+  // apiError: {
+  //   users: {
+  //     success: true,
+  //     message: '',
+  //     fails: {},
+  //   },
+  //   user: {
+  //     success: true,
+  //     message: '',
+  //     fails: {},
+  //   },
+  //   form: {
+  //     success: true,
+  //     message: '',
+  //     fails: {},
+  //   },
+  //   positions: {
+  //     success: true,
+  //     message: '',
+  //   },
+  // },
 };
 
 type TUsersInitialState = typeof initialState;
@@ -31,16 +52,9 @@ const users = (
 ): TUsersInitialState => {
   switch (action.type) {
     case Types.SET_USERS: {
-      const {
-        count,
-        links,
-        page,
-        success,
-        total_pages,
-        total_users,
-        users,
-        update,
-      } = action.payload;
+      const { data, update } = action.payload;
+      const { count, links, page, success, total_pages, total_users, users } =
+        data;
 
       return {
         ...state,
@@ -73,17 +87,17 @@ const users = (
         ...state,
         isLoaded: action.payload,
       };
-    case Types.SET_IS_SUBMITTED:
+    case Types.SET_IS_SUBMITTING:
       return {
         ...state,
-        isSubmitted: action.payload,
+        isSubmitting: action.payload,
       };
     case Types.SET_SHOW_MODAL:
       return {
         ...state,
         showModal: action.payload,
       };
-    case Types.SET_ERROR_API:
+    case Types.SET_API_ERROR:
       return {
         ...state,
         success: action.payload,

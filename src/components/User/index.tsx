@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import { Img } from 'react-image';
 
 import Plug from '../../assets/images/users/plug.svg';
@@ -16,17 +15,6 @@ const User = ({
   registration_timestamp,
   photo,
 }: ISetUsers) => {
-  const [isOverflowed, setIsOverflow] = useState(false);
-  const textMailRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    if (textMailRef.current) {
-      setIsOverflow(
-        textMailRef.current.scrollWidth > textMailRef.current.clientWidth
-      );
-    }
-  }, []);
-
   return (
     <article className='users__item item-user'>
       <a href={`/${id}`} className='item-user__avatar'>
@@ -37,21 +25,12 @@ const User = ({
         <span className='item-user__details item-user__details--position'>
           {position}
         </span>
-        <MainTooltip
-          placement='bottom'
-          title={email}
-          disableHoverListener={!isOverflowed}
-          disableFocusListener={!isOverflowed}
-          arrow
+        <a
+          href={`mailto:${email}`}
+          className='item-user__details item-user__details--mail'
         >
-          <a
-            ref={textMailRef}
-            href={`mailto:${email}`}
-            className='item-user__details item-user__details--mail'
-          >
-            {email}
-          </a>
-        </MainTooltip>
+          <MainTooltip title={email}>{email}</MainTooltip>
+        </a>
         <a
           href={`tel:${phone}`}
           className='item-user__details item-user__details--phone'

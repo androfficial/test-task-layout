@@ -8,20 +8,22 @@ const instance = axios.create({
   baseURL: 'https://frontend-test-assignment-api.abz.agency/api/v1',
 });
 
-const handleError = (error: unknown | AxiosError) => {
-  if (axios.isAxiosError(error)) {
-    console.error(error.response);
-    return {
-      success: error.response?.data.success as boolean,
-      message: error.response?.data.message,
-    };
-  }
-  console.error(error);
-  return {
-    success: false,
-    message: error,
-  };
-};
+// const handleError = (error: unknown | AxiosError) => {
+//   if (axios.isAxiosError(error)) {
+//     console.error(error.response);
+//     return {
+//       success: error.response?.data.success,
+//       message: error.response?.data.message,
+//       fails: error.response?.data.fails ? error.response?.data.fails : {},
+//     };
+//   }
+//   console.error(error);
+//   return {
+//     success: false,
+//     message: error,
+//     fails: {},
+//   };
+// };
 
 const usersAPI = {
   async getUsers(page: number, count: number) {
@@ -32,7 +34,7 @@ const usersAPI = {
 
       return data;
     } catch (error: unknown | AxiosError) {
-      return handleError(error);
+      return false;
     }
   },
   async getUserPositions() {
@@ -41,7 +43,7 @@ const usersAPI = {
 
       return data;
     } catch (error: unknown | AxiosError) {
-      return handleError(error);
+      return false;
     }
   },
   async getToken() {
@@ -50,7 +52,7 @@ const usersAPI = {
 
       return data;
     } catch (error: unknown | AxiosError) {
-      return handleError(error);
+      return false;
     }
   },
   async getNewUser(userData: FormData, token: string) {
@@ -61,7 +63,7 @@ const usersAPI = {
 
       return data;
     } catch (error: unknown | AxiosError) {
-      return handleError(error);
+      return false;
     }
   },
 };
