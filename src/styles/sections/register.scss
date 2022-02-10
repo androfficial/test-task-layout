@@ -43,6 +43,10 @@
     &.Mui-focused.Mui-error fieldset {
       border-color: #cb3d40;
     }
+    // .Mui-error fieldset
+    &.Mui-error fieldset {
+      border-width: 2px;
+    }
   }
   // .MuiOutlinedInput-input
   .MuiOutlinedInput-input {
@@ -153,10 +157,6 @@
     // .Mui-disabled fieldset
     &.Mui-disabled fieldset {
       border-color: #d0cfcf;
-    }
-    // .Mui-focused.Mui-error fieldset
-    &.Mui-error fieldset {
-      border-width: 2px;
     }
     // .MuiOutlinedInput-input
     .MuiOutlinedInput-input {
