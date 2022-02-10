@@ -80,7 +80,7 @@ const Register = () => {
   }, [isUserRegistered]);
 
   return (
-    <section className='page__register register'>
+    <section className='page__register register' id='sign-up'>
       <div className='register__container container'>
         <div className='register__top top-register'>
           <Typography

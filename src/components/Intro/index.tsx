@@ -1,4 +1,5 @@
 import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-scroll';
 
 import { textTransform } from '../../helpers/textTransform';
 
@@ -10,7 +11,7 @@ const Intro = () => {
   const characters = isMobile ? 112 : 270;
 
   return (
-    <section className='page__intro intro'>
+    <section className='page__intro intro' id='intro'>
       <div className='intro__container container'>
         <div className='intro__info info-intro'>
           <h1 className='info-intro__title h1'>
@@ -22,9 +23,15 @@ const Intro = () => {
               characters
             )}
           </p>
-          <button className='info-intro__btn btn btn--yellow' type='button'>
+          <Link
+            to='sign-up'
+            className='info-intro__btn btn btn--yellow'
+            activeClass='active'
+            offset={-60}
+            smooth
+          >
             <span>Sign up</span>
-          </button>
+          </Link>
         </div>
       </div>
     </section>

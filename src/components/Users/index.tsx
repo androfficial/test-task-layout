@@ -39,7 +39,7 @@ const Users = () => {
   }, [dispatch, isUserRegistered]);
 
   return (
-    <section className='page__users users'>
+    <section className='page__users users' id='users'>
       <div className='users__container container'>
         <div className='users__top top-users'>
           <Typography

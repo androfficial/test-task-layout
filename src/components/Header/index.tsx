@@ -1,10 +1,8 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import cn from 'classnames';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-scroll';
 
 import Logo from '../../assets/images/logo.svg';
 
@@ -20,21 +18,6 @@ const Header = () => {
   const onClickOutside = (event: MouseEvent): void => {
     if (darkBackground?.current?.contains(event.target as Node)) {
       setIsOpenMenu((prev) => !prev);
-    }
-  };
-
-  const onClickNavLink = (e: React.MouseEvent): void => {
-    const element = e.target as HTMLAnchorElement;
-
-    if (element.contains(element)) {
-      e.preventDefault();
-
-      if (!element.classList.contains('active')) {
-        document
-          .querySelector('.menu__link.active')
-          ?.classList.remove('active');
-        element.classList.add('active');
-      }
     }
   };
 
@@ -54,40 +37,71 @@ const Header = () => {
       <div className='header__container container'>
         <div className='header__inner'>
           <div className='header__logo logo'>
-            <a href='' className='logo__link'>
+            <Link to='intro' className='logo__link' offset={-60} smooth>
               <img src={Logo} alt='Лого' />
-            </a>
+            </Link>
           </div>
           <div className='header__menu menu'>
             <nav className={cn('menu__body', isOpenMenu && 'active')}>
-              <div onClick={onClickNavLink} className='menu__list'>
+              <div className='menu__list'>
                 <div className='menu__wrapper'>
                   <div className='menu__item'>
-                    <a href='' className='menu__link'>
+                    <Link
+                      to='sign-up'
+                      offset={100}
+                      className='menu__link'
+                      activeClass='active'
+                      smooth
+                    >
                       About me
-                    </a>
+                    </Link>
                   </div>
                   <div className='menu__item'>
-                    <a href='' className='menu__link'>
+                    <Link
+                      to='sign-up'
+                      offset={-59}
+                      className='menu__link'
+                      activeClass='active'
+                      smooth
+                    >
                       Relationships
-                    </a>
+                    </Link>
                   </div>
                   {!isMobile && (
                     <div className='menu__item'>
-                      <a href='' className='menu__link'>
+                      <Link
+                        to='sign-up'
+                        offset={-60}
+                        className='menu__link'
+                        activeClass='active'
+                        smooth
+                      >
                         Requirements
-                      </a>
+                      </Link>
                     </div>
                   )}
                   <div className='menu__item'>
-                    <a href='' className='menu__link'>
+                    <Link
+                      to='sign-up'
+                      offset={-60}
+                      className='menu__link'
+                      activeClass='active'
+                      smooth
+                    >
                       Users
-                    </a>
+                    </Link>
                   </div>
                   <div className='menu__item'>
-                    <a href='' className='menu__link'>
+                    <Link
+                      to='sign-up'
+                      offset={-60}
+                      className='menu__link'
+                      activeClass='active'
+                      spy
+                      smooth
+                    >
                       Sign Up
-                    </a>
+                    </Link>
                   </div>
                   {isMobile && (
                     <div className='menu__item'>

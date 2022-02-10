@@ -1,12 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Typography } from '@mui/material';
+import { Link } from 'react-scroll';
 
 import AcquaintanceImage from '../../assets/images/acquaintance/acquaintance-image.svg';
 import { textTransform } from '../../helpers/textTransform';
 
 const Acquaintance = () => {
   return (
-    <section className='page__acquaintance acquaintance'>
+    <section className='page__acquaintance acquaintance' id='acquaintance'>
       <div className='acquaintance__container container'>
         <div className='acquaintance__inner'>
           <div className='acquaintance__image'>
@@ -29,12 +30,15 @@ const Acquaintance = () => {
                 298
               )}
             </p>
-            <button
-              className='info-acquaintance__btn btn btn--yellow'
-              type='button'
+            <Link
+              to='sign-up'
+              className='info-intro__btn btn btn--yellow'
+              activeClass='active'
+              offset={-60}
+              smooth
             >
               <span>Sign up</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

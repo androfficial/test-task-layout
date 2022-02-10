@@ -1,3 +1,9 @@
+section:not(:first-child) {
+  padding-top: 175px;
+  @media (max-width: 767px) {
+    padding-top: 145px;
+  }
+}
 .btn {
   position: relative;
   display: inline-flex;
@@ -13,6 +19,7 @@
   line-height: math.div(25, 18) * 100%;
   color: rgba(#000, 0.87);
   text-align: center;
+  cursor: pointer;
   user-select: none;
   background-color: transparent;
   border-radius: 80px;
