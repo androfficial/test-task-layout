@@ -9,12 +9,11 @@
 @import 'blocks/null';
 
 body {
-  // font-family: 'Asap', sans-serif;
-  font-family: 'Nunito', sans-serif;
+  font-family: $primaryFontFamily;
   font-size: 16px;
   font-weight: 400;
   line-height: math.div(26, 16) * 100%;
-  color: rgba(#000, 0.87);
+  color: $primaryTextColor;
   background-color: $backgroundColor;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -66,7 +65,7 @@ body {
 // === <ОСНОВНОЙ БЛОК> =================================================
 .page {
   flex: 1 1 auto;
-  padding-top: 60px;
+  padding-top: $heightHeaderInner;
   // .page__intro
   &__intro {
   }

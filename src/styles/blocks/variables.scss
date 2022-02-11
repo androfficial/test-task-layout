@@ -2,10 +2,15 @@
 $maxWidthContainer: 1170;
 $maxWidth: 2560;
 
+// Font families
+$primaryFontFamily: 'Nunito', sans-serif;
+$secondaryFontFamily: 'Asap', sans-serif;
+
 // Color palette
 $primaryColor: #f4e041;
 $secondaryColor: #00bdd3;
 $backgroundColor: #f8f8f8;
+$primaryTextColor: rgba(#000, 0.87);
 
 // Common
 $heightHeaderInner: 60px;

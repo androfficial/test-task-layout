@@ -13,11 +13,11 @@ section:not(:first-child) {
   height: 50px;
   padding: 0 16px;
   overflow: hidden;
-  font-family: 'Nunito', sans-serif;
+  font-family: $primaryFontFamily;
   font-size: 18px;
   font-weight: 400;
   line-height: math.div(25, 18) * 100%;
-  color: rgba(#000, 0.87);
+  color: $primaryTextColor;
   text-align: center;
   cursor: pointer;
   user-select: none;
@@ -87,7 +87,7 @@ section:not(:first-child) {
   line-height: math.div(28, 22) * 100% !important;
 }
 .p1 {
-  font-family: 'Asap', sans-serif !important;
+  font-family: $secondaryFontFamily !important;
   font-size: 16px !important;
   font-weight: 400 !important;
   line-height: math.div(26, 16) * 100% !important;
