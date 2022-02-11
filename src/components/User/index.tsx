@@ -3,7 +3,7 @@ import { Img } from 'react-image';
 import Plug from '../../assets/images/users/plug.svg';
 import { formatPhone } from '../../helpers/formatPhone';
 import { ISetUsers } from '../../types/users';
-import { MainTooltip } from '..';
+import MainTooltip from '../MainTooltip';
 
 const User = ({
   id,
