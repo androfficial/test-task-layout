@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import cn from 'classnames';
-import { useCallback, useEffect, useRef } from 'react';
+import { MouseEvent, useCallback, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import useTypesSelector from '../../hooks/useTypesSelector';
@@ -10,32 +12,24 @@ const Modal = () => {
   const modalBackground = useRef<HTMLDivElement>(null);
   const showModal = useTypesSelector(({ users }) => users.showModal);
 
-  const onClickOutside = useCallback(
-    (event: MouseEvent): void => {
-      if (modalBackground?.current?.contains(event.target as Node)) {
-        dispatch(setShowModal(false));
-      }
-    },
+  const handleModalVisibility = useCallback(
+    () => dispatch(setShowModal(false)),
     [dispatch]
   );
 
-  const onClickButton = () => dispatch(setShowModal(false));
-
-  useEffect(() => {
-    if (showModal) {
-      document.body.classList.add('lock');
-      document.addEventListener('click', onClickOutside);
-    }
-    return () => {
-      document.body.classList.remove('lock');
-      document.removeEventListener('click', onClickOutside);
-    };
-  }, [showModal, onClickOutside]);
+  const stopContentPropagation = useCallback(
+    (e: MouseEvent<HTMLDivElement>): void => e.stopPropagation(),
+    []
+  );
 
   return (
     <div className={cn('modal', showModal && 'open')}>
-      <div ref={modalBackground} className='modal__body'>
-        <div className='modal__content'>
+      <div
+        onClick={handleModalVisibility}
+        ref={modalBackground}
+        className='modal__body'
+      >
+        <div onClick={stopContentPropagation} className='modal__content'>
           <div className='modal__top'>
             <h6 className='modal__title'>Congratulations</h6>
             <p className='modal__text'>
@@ -44,7 +38,7 @@ const Modal = () => {
           </div>
           <div className='modal__bottom'>
             <button
-              onClick={onClickButton}
+              onClick={handleModalVisibility}
               className='modal__btn btn btn--yellow'
               type='button'
             >

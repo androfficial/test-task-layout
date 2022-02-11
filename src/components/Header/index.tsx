@@ -15,9 +15,7 @@ const Header = () => {
     query: '(max-width: 768px)',
   });
 
-  const handleMenu = useCallback(() => {
-    setIsOpenMenu((prev) => !prev);
-  }, []);
+  const handleMenu = useCallback(() => setIsOpenMenu((prev) => !prev), []);
 
   return (
     <header className={cn('header', isOpenMenu && 'disabled-filter')}>
