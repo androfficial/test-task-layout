@@ -10,6 +10,7 @@ import { useFormik } from 'formik';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { Preloader } from '../../components';
 import { textTransform } from '../../helpers/textTransform';
 import { userAddingScheme } from '../../helpers/validationSchemes/userAddingScheme';
 import useTypesSelector from '../../hooks/useTypesSelector';
@@ -199,13 +200,17 @@ const Register = () => {
               />
             </div>
             <div className='form__sign-up'>
-              <button
-                disabled={!(formik.isValid && formik.dirty)}
-                className='form__btn btn btn--yellow'
-                type='submit'
-              >
-                <span>Sign up</span>
-              </button>
+              {isSubmitting ? (
+                <Preloader addClass='form__preloader' />
+              ) : (
+                <button
+                  disabled={!(formik.isValid && formik.dirty)}
+                  className='form__btn btn btn--yellow'
+                  type='submit'
+                >
+                  <span>Sign up</span>
+                </button>
+              )}
             </div>
           </form>
         </div>

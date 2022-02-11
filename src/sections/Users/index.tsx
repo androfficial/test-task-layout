@@ -3,11 +3,11 @@ import cn from 'classnames';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { Preloader, User } from '../../components';
 import { textTransform } from '../../helpers/textTransform';
 import useTypesSelector from '../../hooks/useTypesSelector';
 import { fetchUsers, setIsLoaded } from '../../store/actions/users';
 import { ISetUsers } from '../../types/users';
-import { Preloader, User } from '..';
 
 const Users = () => {
   const dispatch = useDispatch();

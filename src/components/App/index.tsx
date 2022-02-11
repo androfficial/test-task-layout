@@ -1,13 +1,5 @@
-import {
-  Acquaintance,
-  CatFootprints,
-  Footer,
-  Header,
-  Intro,
-  Modal,
-  Register,
-  Users,
-} from '..';
+import { Acquaintance, Intro, Register, Users } from '../../sections';
+import { CatFootprints, Footer, Header, Modal } from '..';
 
 const App = () => {
   return (
