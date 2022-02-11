@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import cn from 'classnames';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-scroll';
 
@@ -13,24 +15,7 @@ const Header = () => {
     query: '(max-width: 768px)',
   });
 
-  const onHandleMenu = () => setIsOpenMenu((prev) => !prev);
-
-  const onClickOutside = useCallback((e: MouseEvent): void => {
-    if (darkBackground?.current?.contains(e.target as Node)) {
-      setIsOpenMenu((prev) => !prev);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isOpenMenu) {
-      document.body.classList.add('lock');
-      document.addEventListener('click', onClickOutside);
-    }
-    return () => {
-      document.body.classList.remove('lock');
-      document.removeEventListener('click', onClickOutside);
-    };
-  }, [isOpenMenu, onClickOutside]);
+  const handleMenu = () => setIsOpenMenu((prev) => !prev);
 
   return (
     <header className={cn('header', isOpenMenu && 'disabled-filter')}>
@@ -174,7 +159,7 @@ const Header = () => {
             {isMobile && (
               <>
                 <button
-                  onClick={onHandleMenu}
+                  onClick={handleMenu}
                   className='menu__icon icon-menu'
                   type='button'
                 >
@@ -182,7 +167,11 @@ const Header = () => {
                   <span />
                   <span />
                 </button>
-                <span ref={darkBackground} className='dark-background' />
+                <span
+                  onClick={handleMenu}
+                  ref={darkBackground}
+                  className='dark-background'
+                />
               </>
             )}
           </div>
