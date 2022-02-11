@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import cn from 'classnames';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-scroll';
 
@@ -15,7 +15,9 @@ const Header = () => {
     query: '(max-width: 768px)',
   });
 
-  const handleMenu = () => setIsOpenMenu((prev) => !prev);
+  const handleMenu = useCallback(() => {
+    setIsOpenMenu((prev) => !prev);
+  }, []);
 
   return (
     <header className={cn('header', isOpenMenu && 'disabled-filter')}>
