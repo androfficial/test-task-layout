@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import cn from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-scroll';
 
@@ -15,11 +15,11 @@ const Header = () => {
 
   const onHandleMenu = () => setIsOpenMenu((prev) => !prev);
 
-  const onClickOutside = (e: MouseEvent): void => {
+  const onClickOutside = useCallback((e: MouseEvent): void => {
     if (darkBackground?.current?.contains(e.target as Node)) {
       setIsOpenMenu((prev) => !prev);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (isOpenMenu) {
@@ -30,7 +30,7 @@ const Header = () => {
       document.body.classList.remove('lock');
       document.removeEventListener('click', onClickOutside);
     };
-  }, [isOpenMenu]);
+  }, [isOpenMenu, onClickOutside]);
 
   return (
     <header className={cn('header', isOpenMenu && 'disabled-filter')}>
