@@ -135,7 +135,7 @@
   .menu__body {
     position: fixed;
     top: 0;
-    left: 0;
+    left: -100%;
     z-index: 102;
     display: block;
     width: $OpenMenuWidth;
@@ -143,12 +143,11 @@
     padding: 91px 8px 30px;
     overflow: auto;
     background-color: #fff;
-    transition: transform 0.4s ease 0s;
-    transform: translateX(-100%);
+    transition: left 0.4s ease 0s;
     &.active {
-      transform: translateX(0);
+      left: 0;
       &::before {
-        transform: translateX(0);
+        left: 0;
       }
       & ~ .dark-background {
         &::after {
@@ -160,14 +159,13 @@
     &::before {
       position: fixed;
       top: 0;
-      left: 0;
+      left: -100%;
       z-index: 103;
       width: $OpenMenuWidth;
       height: $heightHeaderInner;
       content: '';
       background-color: #fff;
-      transition: transform 0.4s ease 0s;
-      transform: translateX(-100%);
+      transition: left 0.4s ease 0s;
     }
   }
   .dark-background {
