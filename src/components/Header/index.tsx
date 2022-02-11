@@ -15,8 +15,8 @@ const Header = () => {
 
   const onHandleMenu = () => setIsOpenMenu((prev) => !prev);
 
-  const onClickOutside = (event: MouseEvent): void => {
-    if (darkBackground?.current?.contains(event.target as Node)) {
+  const onClickOutside = (e: MouseEvent): void => {
+    if (darkBackground?.current?.contains(e.target as Node)) {
       setIsOpenMenu((prev) => !prev);
     }
   };
@@ -38,7 +38,7 @@ const Header = () => {
         <div className='header__inner'>
           <div className='header__logo logo'>
             <Link to='intro' className='logo__link' offset={-60} smooth>
-              <img src={Logo} alt='Лого' />
+              <img src={Logo} alt='Логотип' />
             </Link>
           </div>
           <div className='header__menu menu'>
@@ -48,7 +48,7 @@ const Header = () => {
                   <div className='menu__item'>
                     <Link
                       to='sign-up'
-                      offset={100}
+                      offset={-55}
                       className='menu__link'
                       activeClass='active'
                       smooth
@@ -59,7 +59,7 @@ const Header = () => {
                   <div className='menu__item'>
                     <Link
                       to='sign-up'
-                      offset={-59}
+                      offset={-55}
                       className='menu__link'
                       activeClass='active'
                       smooth
@@ -71,7 +71,7 @@ const Header = () => {
                     <div className='menu__item'>
                       <Link
                         to='sign-up'
-                        offset={-60}
+                        offset={-55}
                         className='menu__link'
                         activeClass='active'
                         smooth
@@ -83,7 +83,7 @@ const Header = () => {
                   <div className='menu__item'>
                     <Link
                       to='sign-up'
-                      offset={-60}
+                      offset={-55}
                       className='menu__link'
                       activeClass='active'
                       smooth
@@ -94,7 +94,7 @@ const Header = () => {
                   <div className='menu__item'>
                     <Link
                       to='sign-up'
-                      offset={-60}
+                      offset={-55}
                       className='menu__link'
                       activeClass='active'
                       spy

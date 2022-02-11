@@ -27,7 +27,7 @@ const Intro = () => {
             to='sign-up'
             className='info-intro__btn btn btn--yellow'
             activeClass='active'
-            offset={-60}
+            offset={-55}
             smooth
           >
             <span>Sign up</span>

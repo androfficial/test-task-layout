@@ -60,14 +60,16 @@
     position: relative;
     display: flex;
     align-items: center;
-    &:first-child {
-      &::before {
-        position: absolute;
-        top: -32px;
-        left: -8px;
-        width: calc(100% + 16px);
-        content: '';
-        border: 1px solid #e0e0e0;
+    @media (max-width: 768px) {
+      &:first-child {
+        &::before {
+          position: absolute;
+          top: -32px;
+          left: -8px;
+          width: calc(100% + 16px);
+          content: '';
+          border: 1px solid #e0e0e0;
+        }
       }
     }
     &:not(:last-child) {
