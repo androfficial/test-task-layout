@@ -21,27 +21,6 @@ const initialState = {
   isSubmitting: false,
   showModal: false,
   success: true,
-  // apiError: {
-  //   users: {
-  //     success: true,
-  //     message: '',
-  //     fails: {},
-  //   },
-  //   user: {
-  //     success: true,
-  //     message: '',
-  //     fails: {},
-  //   },
-  //   form: {
-  //     success: true,
-  //     message: '',
-  //     fails: {},
-  //   },
-  //   positions: {
-  //     success: true,
-  //     message: '',
-  //   },
-  // },
 };
 
 type TUsersInitialState = typeof initialState;

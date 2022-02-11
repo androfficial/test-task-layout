@@ -3,27 +3,11 @@ import axios, { AxiosError } from 'axios';
 import { IGetNewUser } from '../types/newUser';
 import { IGetToken } from '../types/token';
 import { IGetUsers, IGetUsersPositions } from '../types/users';
+import { handleError } from './config';
 
 const instance = axios.create({
   baseURL: 'https://frontend-test-assignment-api.abz.agency/api/v1',
 });
-
-// const handleError = (error: unknown | AxiosError) => {
-//   if (axios.isAxiosError(error)) {
-//     console.error(error.response);
-//     return {
-//       success: error.response?.data.success,
-//       message: error.response?.data.message,
-//       fails: error.response?.data.fails ? error.response?.data.fails : {},
-//     };
-//   }
-//   console.error(error);
-//   return {
-//     success: false,
-//     message: error,
-//     fails: {},
-//   };
-// };
 
 const usersAPI = {
   async getUsers(page: number, count: number) {
@@ -34,7 +18,7 @@ const usersAPI = {
 
       return data;
     } catch (error: unknown | AxiosError) {
-      return false;
+      return handleError(error);
     }
   },
   async getUserPositions() {
@@ -43,7 +27,7 @@ const usersAPI = {
 
       return data;
     } catch (error: unknown | AxiosError) {
-      return false;
+      return handleError(error);
     }
   },
   async getToken() {
@@ -52,7 +36,7 @@ const usersAPI = {
 
       return data;
     } catch (error: unknown | AxiosError) {
-      return false;
+      return handleError(error);
     }
   },
   async getNewUser(userData: FormData, token: string) {
@@ -63,7 +47,7 @@ const usersAPI = {
 
       return data;
     } catch (error: unknown | AxiosError) {
-      return false;
+      return handleError(error);
     }
   },
 };

@@ -55,8 +55,8 @@ const Users = () => {
         </div>
         {isLoaded ? (
           <div className='users__list'>
-            {users.map((obj: ISetUsers) => (
-              <User key={obj.id} {...obj} />
+            {users.map((obj: ISetUsers, i) => (
+              <User key={`${obj.id}: ${i}`} {...obj} />
             ))}
           </div>
         ) : (

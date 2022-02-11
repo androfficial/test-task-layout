@@ -1,14 +1,20 @@
-// import { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 
-// import { IAxios } from '../types/axios';
-
-// export const catchError = (error: AxiosError) => {
-//   const { response } = error;
-//   const errorMessage = (response?.data as IAxios).message;
-//   const errorStatus = response?.status;
-//   const errorStatusText = response?.statusText;
-
-//   console.error(
-//     `Could not fetch: ${errorMessage}. \nStatus: ${errorStatus}. \nStatusText: ${errorStatusText}`
-//   );
-// };
+export const handleError = (error: unknown | AxiosError): false => {
+  if (axios.isAxiosError(error)) {
+    console.error(error.response);
+    return false;
+    // return {
+    //   success: error.response?.data.success as boolean,
+    //   message: error.response?.data.message as string,
+    //   fails: error.response?.data.fails ? error.response.data.fails : {},
+    // };
+  }
+  console.error(error);
+  return false;
+  // return {
+  //   success: false,
+  //   message: error,
+  //   fails: {},
+  // };
+};
