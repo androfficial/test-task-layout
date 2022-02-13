@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
-import { TextField } from '@mui/material';
+import { TextField, TextFieldProps } from '@mui/material';
 
-const MainTextField = () => {
-  const CustomTextField = styled(TextField)({
+const MainTextField = (props: TextFieldProps) => {
+  const CustomTextField = styled((props: TextFieldProps) => (
+    <TextField {...props} />
+  ))({
     '& .MuiFormHelperText-root.Mui-error': {
       fontFamily: ['Asap', 'sans-serif'].join(','),
       color: '#cb3d40',
@@ -47,15 +49,7 @@ const MainTextField = () => {
     },
   });
 
-  return (
-    <CustomTextField
-      variant='outlined'
-      label='Your name'
-      name='name'
-      required
-      fullWidth
-    />
-  );
+  return <CustomTextField {...props} />;
 };
 
 export default MainTextField;
