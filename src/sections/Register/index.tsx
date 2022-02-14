@@ -1,3 +1,7 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-unreachable-loop */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 import {
   FormControlLabel,
   FormLabel,
@@ -7,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useFormik } from 'formik';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Preloader } from '../../components';
@@ -24,13 +28,25 @@ import { FormValues } from '../../types/formik';
 const Register = () => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState('');
-  const [userPositions, isUserRegistered, isSubmitting] = useTypesSelector(
-    ({ users }) => [
+  const [userPositions, isUserRegistered, isSubmitting, formErrors] =
+    useTypesSelector(({ users }) => [
       users.userPositions,
       users.isUserRegistered,
       users.isSubmitting,
-    ]
-  );
+      users.formErrors,
+    ]);
+
+  const validationErrors = useMemo(() => {
+    if (!formErrors.success) {
+      const array: string[] = [];
+
+      for (const key in formErrors.fails) {
+        formErrors.fails[key].map((el: string) => array.push(el));
+      }
+
+      return array;
+    }
+  }, [formErrors]);
 
   const formik = useFormik<FormValues>({
     initialValues: {
@@ -199,6 +215,30 @@ const Register = () => {
                 fullWidth
               />
             </div>
+            {!isSubmitting && !formErrors.success && (
+              <div className='form__validation-error validation-error'>
+                {!formErrors.success &&
+                formErrors.message !== 'The token expired.' ? (
+                  <>
+                    <strong className='validation-error__message'>
+                      {formErrors.message}
+                    </strong>
+                    <ul className='validation-error__list'>
+                      {validationErrors &&
+                        validationErrors.map((error, i) => (
+                          <li key={i} className='validation-error__item'>
+                            <p className='validation-error__text'>{error}</p>
+                          </li>
+                        ))}
+                    </ul>
+                  </>
+                ) : (
+                  <strong className='validation-error__message'>
+                    Something went wrong, please try submitting the form again.
+                  </strong>
+                )}
+              </div>
+            )}
             <div className='form__sign-up'>
               {isSubmitting ? (
                 <Preloader addClass='form__preloader' />

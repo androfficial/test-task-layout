@@ -40,8 +40,8 @@ export const setShowModal = (payload: boolean): TUsersAction => ({
   payload,
 });
 
-export const setApiError = (payload: boolean): TUsersAction => ({
-  type: Types.SET_API_ERROR,
+export const setFormErrors = (payload: any): TUsersAction => ({
+  type: Types.SET_FORM_ERRORS,
   payload,
 });
 
@@ -51,36 +51,25 @@ export const fetchUsers =
   (page = 1, count = 9, update = false) =>
   async (dispatch: TUsersDispatch) => {
     const response = await usersAPI.getUsers(page, count);
-    if (response) {
-      dispatch(setUsers(response, update));
-    } else {
-      dispatch(setIsLoaded(false));
-      dispatch(setApiError(true));
-    }
+    dispatch(setUsers(response, update));
   };
 
 export const fetchUserPositions = () => async (dispatch: TUsersDispatch) => {
   const response = await usersAPI.getUserPositions();
-  if (response) {
-    dispatch(setUserPositions(response));
-  } else {
-    dispatch(setApiError(true));
-  }
+  dispatch(setUserPositions(response));
 };
 
 export const fetchUser =
   (userData: FormData) => async (dispatch: TUsersDispatch) => {
     dispatch(setIsSubmitting(true));
     const response = await usersAPI.getToken();
-    if (response) {
-      const newUser = await usersAPI.getNewUser(userData, response.token);
-      if (newUser) {
-        dispatch(setIsSubmitting(false));
-        dispatch(setShowModal(true));
-        dispatch(setIsUserRegistered(true));
-      } else {
-        dispatch(setIsSubmitting(false));
-        dispatch(setApiError(true));
-      }
+    const newUser = await usersAPI.getNewUser(userData, response.token);
+    if (newUser.success) {
+      dispatch(setIsSubmitting(false));
+      dispatch(setShowModal(true));
+      dispatch(setIsUserRegistered(true));
+    } else {
+      dispatch(setIsSubmitting(false));
+      dispatch(setFormErrors(newUser.data));
     }
   };

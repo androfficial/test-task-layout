@@ -1,5 +1,4 @@
 /* eslint-disable default-param-last */
-
 import {
   IGetUsersLinks,
   ISetUsers,
@@ -20,7 +19,11 @@ const initialState = {
   isLoaded: false,
   isSubmitting: false,
   showModal: false,
-  success: true,
+  formErrors: {
+    success: true,
+    message: '',
+    fails: {},
+  },
 };
 
 type TUsersInitialState = typeof initialState;
@@ -32,8 +35,7 @@ const users = (
   switch (action.type) {
     case Types.SET_USERS: {
       const { data, update } = action.payload;
-      const { count, links, page, success, total_pages, total_users, users } =
-        data;
+      const { count, links, page, total_pages, total_users, users } = data;
 
       return {
         ...state,
@@ -44,22 +46,25 @@ const users = (
         pageSize: count,
         links,
         isLoaded: true,
-        success,
       };
     }
     case Types.SET_USER_POSITIONS: {
-      const { positions, success } = action.payload;
+      const { positions } = action.payload;
 
       return {
         ...state,
         userPositions: positions,
-        success,
       };
     }
     case Types.SET_IS_USER_REGISTERED:
       return {
         ...state,
         isUserRegistered: action.payload,
+        formErrors: {
+          success: true,
+          message: '',
+          fails: {},
+        },
       };
     case Types.SET_IS_LOADED:
       return {
@@ -76,10 +81,10 @@ const users = (
         ...state,
         showModal: action.payload,
       };
-    case Types.SET_API_ERROR:
+    case Types.SET_FORM_ERRORS:
       return {
         ...state,
-        success: action.payload,
+        formErrors: action.payload,
       };
     default:
       return state;

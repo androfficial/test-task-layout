@@ -1,8 +1,7 @@
 import axios, { AxiosError } from 'axios';
 
-import { IGetNewUser } from '../types/newUser';
 import { IGetToken } from '../types/token';
-import { IGetUsers, IGetUsersPositions } from '../types/users';
+import { IGetNewUser, IGetUsers, IGetUsersPositions } from '../types/users';
 import { handleError } from './config';
 
 const instance = axios.create({
@@ -11,33 +10,21 @@ const instance = axios.create({
 
 const usersAPI = {
   async getUsers(page: number, count: number) {
-    try {
-      const { data } = await instance.get<IGetUsers>(
-        `/users?page=${page}&count=${count}`
-      );
+    const { data } = await instance.get<IGetUsers>(
+      `/users?page=${page}&count=${count}`
+    );
 
-      return data;
-    } catch (error: unknown | AxiosError) {
-      return handleError(error);
-    }
+    return data;
   },
   async getUserPositions() {
-    try {
-      const { data } = await instance.get<IGetUsersPositions>('/positions');
+    const { data } = await instance.get<IGetUsersPositions>('/positions');
 
-      return data;
-    } catch (error: unknown | AxiosError) {
-      return handleError(error);
-    }
+    return data;
   },
   async getToken() {
-    try {
-      const { data } = await instance.get<IGetToken>('/token');
+    const { data } = await instance.get<IGetToken>('/token');
 
-      return data;
-    } catch (error: unknown | AxiosError) {
-      return handleError(error);
-    }
+    return data;
   },
   async getNewUser(userData: FormData, token: string) {
     try {
@@ -45,7 +32,10 @@ const usersAPI = {
         headers: { Token: token, 'content-type': 'multipart/form-data' },
       });
 
-      return data;
+      return {
+        success: data.success,
+        data,
+      };
     } catch (error: unknown | AxiosError) {
       return handleError(error);
     }

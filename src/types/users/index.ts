@@ -5,7 +5,7 @@ export enum Types {
   SET_IS_LOADED = 'USERS@SET:IS_LOADED',
   SET_IS_SUBMITTING = 'USERS@SET:IS_SUBMITTING',
   SET_SHOW_MODAL = 'USERS@SET:SHOW_MODAL',
-  SET_API_ERROR = 'USERS@SET:API_ERROR',
+  SET_FORM_ERRORS = 'USERS@SET:FORM_ERRORS',
 }
 
 export interface IGetUsersLinks {
@@ -44,6 +44,12 @@ export interface IGetUsersPositions {
   success: boolean;
 }
 
+export interface IGetNewUser {
+  message: string;
+  success: boolean;
+  user_id: number;
+}
+
 export interface ISetUsersAction {
   type: Types.SET_USERS;
   payload: { data: IGetUsers; update: boolean };
@@ -74,9 +80,9 @@ export interface ISetShowModalAction {
   payload: boolean;
 }
 
-export interface ISetApiErrorAction {
-  type: Types.SET_API_ERROR;
-  payload: boolean;
+export interface ISetFormErrorsAction {
+  type: Types.SET_FORM_ERRORS;
+  payload: any;
 }
 
 export type TUsersAction =
@@ -86,4 +92,4 @@ export type TUsersAction =
   | ISetIsLoadedAction
   | ISetIsSubmittingAction
   | ISetShowModalAction
-  | ISetApiErrorAction;
+  | ISetFormErrorsAction;
