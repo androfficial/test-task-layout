@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-import * as regex from '../regex';
+import * as regex from '../helpers/regex';
 
 export const userAddingScheme = Yup.object({
   name: Yup.string()

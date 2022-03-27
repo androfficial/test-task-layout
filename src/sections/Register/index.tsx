@@ -16,8 +16,8 @@ import { useDispatch } from 'react-redux';
 
 import { Preloader } from '../../components';
 import { textTransform } from '../../helpers/textTransform';
-import { userAddingScheme } from '../../helpers/validationSchemes/userAddingScheme';
 import useTypesSelector from '../../hooks/useTypesSelector';
+import { userAddingScheme } from '../../schemes/userAddingScheme';
 import {
   fetchUser,
   fetchUserPositions,
