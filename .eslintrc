@@ -37,6 +37,8 @@
     "prettier/prettier": ["warn", { "singleQuote": true }],
     "no-shadow": "off",
     "camelcase": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/naming-convention": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "import/order": "off",
     "no-control-regex": 0,
@@ -80,6 +82,13 @@
       {
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"
+      }
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": ["state"]
       }
     ]
   }

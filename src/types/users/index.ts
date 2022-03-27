@@ -1,12 +1,4 @@
-export enum Types {
-  SET_USERS = 'USERS@SET:USERS',
-  SET_USER_POSITIONS = 'USERS@SET:USER_POSITIONS',
-  SET_IS_USER_REGISTERED = 'USERS@SET:IS_USER_REGISTERED',
-  SET_IS_LOADED = 'USERS@SET:IS_LOADED',
-  SET_IS_SUBMITTING = 'USERS@SET:IS_SUBMITTING',
-  SET_SHOW_MODAL = 'USERS@SET:SHOW_MODAL',
-  SET_FORM_ERRORS = 'USERS@SET:FORM_ERRORS',
-}
+import { AxiosResponse } from 'axios';
 
 export interface IGetUsersLinks {
   next_url: string | null;
@@ -44,52 +36,28 @@ export interface IGetUsersPositions {
   success: boolean;
 }
 
+export interface IGetToken {
+  success: boolean;
+  token: string;
+}
+
 export interface IGetNewUser {
   message: string;
   success: boolean;
   user_id: number;
 }
 
-export interface ISetUsersAction {
-  type: Types.SET_USERS;
-  payload: { data: IGetUsers; update: boolean };
+export interface IFetchUsersProps {
+  page: number;
+  count: number;
+  update?: boolean;
 }
 
-export interface ISetUserPositionsAction {
-  type: Types.SET_USER_POSITIONS;
-  payload: IGetUsersPositions;
+export interface IFetchUsersResponse {
+  response: AxiosResponse<IGetUsers>;
+  update: boolean;
 }
 
-export interface ISetIsUserRegisteredAction {
-  type: Types.SET_IS_USER_REGISTERED;
-  payload: boolean;
+export interface INewUserRegisterProps {
+  userData: FormData;
 }
-
-export interface ISetIsLoadedAction {
-  type: Types.SET_IS_LOADED;
-  payload: boolean;
-}
-
-export interface ISetIsSubmittingAction {
-  type: Types.SET_IS_SUBMITTING;
-  payload: boolean;
-}
-
-export interface ISetShowModalAction {
-  type: Types.SET_SHOW_MODAL;
-  payload: boolean;
-}
-
-export interface ISetFormErrorsAction {
-  type: Types.SET_FORM_ERRORS;
-  payload: any;
-}
-
-export type TUsersAction =
-  | ISetUsersAction
-  | ISetUserPositionsAction
-  | ISetIsUserRegisteredAction
-  | ISetIsLoadedAction
-  | ISetIsSubmittingAction
-  | ISetShowModalAction
-  | ISetFormErrorsAction;

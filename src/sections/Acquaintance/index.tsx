@@ -5,7 +5,7 @@ import { Link } from 'react-scroll';
 import AcquaintanceImage from '../../assets/images/acquaintance/acquaintance-image.svg';
 import { textTransform } from '../../helpers/textTransform';
 
-const Acquaintance = () => {
+export const Acquaintance = () => {
   return (
     <section className='page__acquaintance acquaintance' id='acquaintance'>
       <div className='acquaintance__container container'>
@@ -45,5 +45,3 @@ const Acquaintance = () => {
     </section>
   );
 };
-
-export default Acquaintance;

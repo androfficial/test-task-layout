@@ -6,7 +6,7 @@ interface IMainTooltip {
   title: string;
 }
 
-const MainTooltip = ({ children }: IMainTooltip) => {
+export const MainTooltip = ({ children }: IMainTooltip) => {
   const [isOverflowed, setIsOverflow] = useState(false);
   const textElementRef = useRef<HTMLDivElement>(null);
 
@@ -62,5 +62,3 @@ const MainTooltip = ({ children }: IMainTooltip) => {
     </CustomTooltip>
   );
 };
-
-export default MainTooltip;

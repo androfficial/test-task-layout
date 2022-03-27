@@ -1,4 +1,4 @@
-export { default as Acquaintance } from './Acquaintance';
-export { default as Intro } from './Intro';
-export { default as Register } from './Register';
-export { default as Users } from './Users';
+export { Acquaintance } from './Acquaintance';
+export { Intro } from './Intro';
+export { Register } from './Register';
+export { Users } from './Users';

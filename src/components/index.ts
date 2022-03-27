@@ -1,7 +1,7 @@
-export { default as CatFootprints } from './CatFootprints';
-export { default as Footer } from './Footer';
-export { default as Header } from './Header';
-export { default as MainTooltip } from './MainTooltip';
-export { default as Modal } from './Modal';
-export { default as Preloader } from './Preloader';
-export { default as User } from './User';
+export { CatFootprints } from './CatFootprints';
+export { Footer } from './Footer';
+export { Header } from './Header';
+export { MainTooltip } from './MainTooltip';
+export { Modal } from './Modal';
+export { Preloader } from './Preloader';
+export { User } from './User';

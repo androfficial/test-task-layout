@@ -3,7 +3,7 @@ import { Link } from 'react-scroll';
 
 import { textTransform } from '../../helpers/textTransform';
 
-const Intro = () => {
+export const Intro = () => {
   const isMobile = useMediaQuery({
     query: '(max-width: 600px)',
   });
@@ -37,5 +37,3 @@ const Intro = () => {
     </section>
   );
 };
-
-export default Intro;

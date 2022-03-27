@@ -1,18 +1,17 @@
 import { Typography } from '@mui/material';
 import cn from 'classnames';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { Preloader, User } from '../../components';
 import { textTransform } from '../../helpers/textTransform';
-import useTypesSelector from '../../hooks/useTypesSelector';
-import { fetchUsers, setIsLoaded } from '../../store/actions/users';
+import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
+import { fetchUsers } from '../../store/slices/usersSlice';
 import { ISetUsers } from '../../types/users';
 
-const Users = () => {
-  const dispatch = useDispatch();
+export const Users = () => {
+  const dispatch = useAppDispatch();
   const [users, links, isUserRegistered, currentPage, pageSize, isLoaded] =
-    useTypesSelector(({ users }) => [
+    useAppSelector(({ users }) => [
       users.users,
       users.links,
       users.isUserRegistered,
@@ -21,20 +20,19 @@ const Users = () => {
       users.isLoaded,
     ]);
 
-  const handleButtonClick = (): void => {
+  const handleButtonClick = () => {
     if (links.next_url) {
-      dispatch(setIsLoaded(false));
-      dispatch(fetchUsers(currentPage + 1, pageSize));
+      dispatch(fetchUsers({ page: currentPage + 1, count: pageSize }));
     }
   };
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(fetchUsers({ page: 1, count: 6 }));
   }, [dispatch]);
 
   useEffect(() => {
     if (isUserRegistered) {
-      dispatch(fetchUsers(1, 6, true));
+      dispatch(fetchUsers({ page: 1, count: 6, update: true }));
     }
   }, [dispatch, isUserRegistered]);
 
@@ -79,5 +77,3 @@ const Users = () => {
     </section>
   );
 };
-
-export default Users;

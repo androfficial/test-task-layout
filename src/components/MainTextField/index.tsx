@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { TextField, TextFieldProps } from '@mui/material';
 
-const MainTextField = (props: TextFieldProps) => {
+export const MainTextField = (props: TextFieldProps) => {
   const CustomTextField = styled((props: TextFieldProps) => (
     <TextField {...props} />
   ))({
@@ -51,5 +51,3 @@ const MainTextField = (props: TextFieldProps) => {
 
   return <CustomTextField {...props} />;
 };
-
-export default MainTextField;

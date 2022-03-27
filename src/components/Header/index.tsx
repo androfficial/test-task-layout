@@ -8,7 +8,7 @@ import { Link } from 'react-scroll';
 
 import Logo from '../../assets/images/logo.svg';
 
-const Header = () => {
+export const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const darkBackground = useRef<HTMLSpanElement>(null);
   const isMobile = useMediaQuery({
@@ -180,5 +180,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

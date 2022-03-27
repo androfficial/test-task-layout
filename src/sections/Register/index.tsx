@@ -12,24 +12,29 @@ import {
 } from '@mui/material';
 import { useFormik } from 'formik';
 import { ChangeEvent, useEffect, useMemo, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { Preloader } from '../../components';
 import { textTransform } from '../../helpers/textTransform';
-import useTypesSelector from '../../hooks/useTypesSelector';
+import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
 import { userAddingScheme } from '../../schemes/userAddingScheme';
 import {
-  fetchUser,
   fetchUserPositions,
-  setIsUserRegistered,
-} from '../../store/actions/users';
-import { FormValues } from '../../types/formik';
+  newUserRegister,
+} from '../../store/slices/usersSlice';
 
-const Register = () => {
-  const dispatch = useDispatch();
+interface IFormValues {
+  name: string;
+  email: string;
+  phone: string;
+  position_id: number;
+  photo: File | null;
+}
+
+export const Register = () => {
+  const dispatch = useAppDispatch();
   const [selectedFile, setSelectedFile] = useState('');
   const [userPositions, isUserRegistered, isSubmitting, formErrors] =
-    useTypesSelector(({ users }) => [
+    useAppSelector(({ users }) => [
       users.userPositions,
       users.isUserRegistered,
       users.isSubmitting,
@@ -48,7 +53,7 @@ const Register = () => {
     }
   }, [formErrors]);
 
-  const formik = useFormik<FormValues>({
+  const formik = useFormik<IFormValues>({
     initialValues: {
       name: '',
       email: '',
@@ -65,15 +70,11 @@ const Register = () => {
         formData.append(key, value);
       }
 
-      if (isUserRegistered) {
-        dispatch(setIsUserRegistered(false));
-      }
-
-      dispatch(fetchUser(formData));
+      dispatch(newUserRegister({ userData: formData }));
     },
   });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {
       const file = e.target.files[0];
 
@@ -258,5 +259,3 @@ const Register = () => {
     </section>
   );
 };
-
-export default Register;

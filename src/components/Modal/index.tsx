@@ -2,15 +2,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import cn from 'classnames';
 import { MouseEvent, useCallback, useRef } from 'react';
-import { useDispatch } from 'react-redux';
 
-import useTypesSelector from '../../hooks/useTypesSelector';
-import { setShowModal } from '../../store/actions/users';
+import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
+import { setShowModal } from '../../store/slices/usersSlice';
 
-const Modal = () => {
-  const dispatch = useDispatch();
+export const Modal = () => {
+  const dispatch = useAppDispatch();
   const modalBackground = useRef<HTMLDivElement>(null);
-  const showModal = useTypesSelector(({ users }) => users.showModal);
+  const showModal = useAppSelector(({ users }) => users.showModal);
 
   const handleModalVisibility = useCallback(
     () => dispatch(setShowModal(false)),
@@ -50,5 +49,3 @@ const Modal = () => {
     </div>
   );
 };
-
-export default Modal;
