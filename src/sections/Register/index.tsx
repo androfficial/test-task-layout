@@ -9,7 +9,7 @@ import {
 import { useFormik } from 'formik';
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import { Preloader } from '../../components';
+import { NetworkFormErrors, Preloader } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
 import { userRegisterScheme } from '../../schemes/userRegisterScheme';
 import {
@@ -193,34 +193,9 @@ export const Register = () => {
                 fullWidth
               />
             </div>
-            {/* Если форма не отправляется сейчас и возникла ошибка регистрации пользователя то отобразить блок ошибки */}
+            {/* Если форма не отправляется сейчас и возникла ошибка регистрации пользователя то отобразить компонент ошибки */}
             {!isSubmitting && !formErrors.success && (
-              <div className='form__validation-error validation-error'>
-                {/* Если сообщение ошибки не равно тому что срок действия токена истек то показать сообщение ошибки и список ошибок валидации */}
-                {formErrors.message !== 'The token expired.' ? (
-                  <>
-                    <strong className='validation-error__message'>
-                      {formErrors.fails.length !== 0
-                        ? `${formErrors.message}:`
-                        : formErrors.message}
-                    </strong>
-                    {formErrors.fails.length !== 0 && (
-                      <ul className='validation-error__list'>
-                        {formErrors.fails.map((el, i) => (
-                          <li key={i} className='validation-error__item'>
-                            <p className='validation-error__text'>{el}</p>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </>
-                ) : (
-                  <strong className='validation-error__message'>
-                    Something went wrong, please try submitting the form again.
-                  </strong>
-                  // Иначе если сообщение ошибки равно тому что срок действия токена истек вывести ошибку о том, что что то пошло не так
-                )}
-              </div>
+              <NetworkFormErrors formErrors={formErrors} />
             )}
             <div className='form__sign-up'>
               {isSubmitting ? (
