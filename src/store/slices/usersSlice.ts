@@ -1,12 +1,14 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable default-param-last */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
 import { mainAPI } from '../../api/api';
 import {
+  IFailsRequest,
   IFetchUsersProps,
   IFetchUsersResponse,
+  IFormErrors,
   IGetUsersLinks,
   IGetUsersPositions,
   INewUserRegisterProps,
@@ -85,8 +87,8 @@ const initialState = {
   formErrors: {
     success: true,
     message: '',
-    fails: {},
-  },
+    fails: [],
+  } as IFormErrors,
 };
 
 export const usersSlice = createSlice({
@@ -95,9 +97,6 @@ export const usersSlice = createSlice({
   reducers: {
     setShowModal(state, action) {
       state.showModal = action.payload;
-    },
-    setFormErrors(state, action) {
-      state.formErrors = action.payload;
     },
   },
   extraReducers: {
@@ -139,12 +138,29 @@ export const usersSlice = createSlice({
       state.formErrors = {
         success: true,
         message: '',
-        fails: {},
+        fails: [],
+      };
+    },
+    [newUserRegister.rejected.type]: (
+      state,
+      action: PayloadAction<AxiosResponse<IFailsRequest>>
+    ) => {
+      const { data } = action.payload;
+      const errorsReceived: string[] = [];
+
+      for (const key in data.fails) {
+        data.fails[key].map((el: string) => errorsReceived.push(el));
+      }
+
+      state.isSubmitting = false;
+      state.formErrors = {
+        ...data,
+        fails: errorsReceived,
       };
     },
   },
 });
 
-export const { setShowModal, setFormErrors } = usersSlice.actions;
+export const { setShowModal } = usersSlice.actions;
 
 export default usersSlice.reducer;
