@@ -11,8 +11,12 @@ export const userAddingScheme = Yup.object({
     .matches(regex.emailRegex, 'Mail is not valid')
     .required('Mail is required field'),
   phone: Yup.string()
-    .matches(regex.phoneRegex, 'Phone number is not valid')
-    .required('Number must start with +380'),
+    .required('Phone is required field')
+    .test('ValidNumber', 'Number must start with +380', (value) => {
+      if (!value) return false;
+      return value.startsWith('+380');
+    })
+    .matches(regex.phoneRegex, 'Phone number is not valid.'),
   photo: Yup.mixed()
     .required('Image required')
     .test(
