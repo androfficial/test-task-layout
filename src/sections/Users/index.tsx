@@ -3,7 +3,6 @@ import cn from 'classnames';
 import { useEffect } from 'react';
 
 import { Preloader, User } from '../../components';
-import { textTransform } from '../../helpers/textTransform';
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
 import { fetchUsers } from '../../store/slices/usersSlice';
 import { ISetUsers } from '../../types/users';
@@ -45,11 +44,8 @@ export const Users = () => {
             component='h2'
             className='top-users__title h1'
           >
-            {textTransform('Our cheerful users', 18)}
+            Working with GET request
           </Typography>
-          <h3 className='top-users__subtitle h2'>
-            {textTransform('The best specialists are shown below', 36)}
-          </h3>
         </div>
         {isLoaded ? (
           <div className='users__list'>

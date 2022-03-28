@@ -1,5 +1,3 @@
-export { CatFootprints } from './CatFootprints';
-export { Footer } from './Footer';
 export { Header } from './Header';
 export { MainTooltip } from './MainTooltip';
 export { Modal } from './Modal';

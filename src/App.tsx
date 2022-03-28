@@ -1,5 +1,5 @@
-import { CatFootprints, Footer, Header, Modal } from './components';
-import { Acquaintance, Intro, Register, Users } from './sections';
+import { Header, Modal } from './components';
+import { Intro, Register, Users } from './sections';
 
 const App = () => {
   return (
@@ -7,12 +7,9 @@ const App = () => {
       <Header />
       <main className='page'>
         <Intro />
-        <Acquaintance />
         <Users />
         <Register />
-        <CatFootprints />
       </main>
-      <Footer />
       <Modal />
     </>
   );

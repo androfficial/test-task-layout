@@ -33,20 +33,19 @@ body {
 // === <КОНТЕЙНЕР> =====================================================
 .container {
   max-width: 1290px;
-  padding: 0 60px;
   margin: 0 auto;
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
+    padding: 0 60px;
+  }
+  @media (max-width: 768px) {
     max-width: 1234px;
     padding: 0 32px;
   }
-  @media (max-width: 767px) {
+  @media (max-width: 480px) {
     max-width: 1202px;
     padding: 0 16px;
   }
 }
-
-// <ПОДКЛЮЧЕНИЕ @KEYFRAMES АНИМАЦИЙ>====================================
-@import 'blocks/@keyframes';
 
 // <ПОДКЛЮЧЕНИЕ ГОТОВЫХ КЛАССОВ>========================================
 @import 'blocks/ui';
@@ -54,11 +53,8 @@ body {
 // === <ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ> =================
 @import 'blocks/header';
 @import 'sections/intro';
-@import 'sections/acquaintance';
 @import 'sections/users';
 @import 'sections/register';
-@import 'blocks/cat-footprints';
-@import 'blocks/footer';
 @import 'blocks/modal';
 @import 'blocks/preloader';
 

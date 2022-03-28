@@ -1,22 +1,22 @@
 section:not(:first-child) {
-  padding-top: 175px;
-  @media (max-width: 767px) {
-    padding-top: 145px;
-  }
+  padding-top: 140px;
+}
+section:last-child {
+  padding-bottom: 100px;
 }
 .btn {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 148px;
-  height: 50px;
+  min-width: 100px;
+  height: 34px;
   padding: 0 16px;
   overflow: hidden;
   font-family: $primaryFontFamily;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: math.div(25, 18) * 100%;
+  line-height: 162%;
   color: $primaryTextColor;
   text-align: center;
   cursor: pointer;

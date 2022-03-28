@@ -14,7 +14,6 @@ import { useFormik } from 'formik';
 import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 
 import { Preloader } from '../../components';
-import { textTransform } from '../../helpers/textTransform';
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
 import { userAddingScheme } from '../../schemes/userAddingScheme';
 import {
@@ -106,14 +105,8 @@ export const Register = () => {
             component='h2'
             className='top-register__title h1'
           >
-            {textTransform('Register to get a work', 22)}
+            Working with POST request
           </Typography>
-          <h3 className='top-users__subtitle h2'>
-            {textTransform(
-              'Your personal data is stored according to the Privacy Policy',
-              60
-            )}
-          </h3>
         </div>
         <div className='register__body'>
           <form onSubmit={formik.handleSubmit} className='register__form form'>
