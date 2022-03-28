@@ -22,11 +22,11 @@ export const MainTooltip = ({ children }: IMainTooltip) => {
       textAlign: 'center',
       paddingLeft: '16px',
       paddingRight: '16px',
-      backgroundColor: '#232f34',
+      backgroundColor: 'rgba(0, 0, 0, 0.87)',
       color: '#fff',
     },
     [`& .${tooltipClasses.arrow} `]: {
-      color: '#232F34',
+      color: 'rgba(0, 0, 0, 0.87)',
     },
     [`& .${tooltipClasses.tooltipPlacementBottom} `]: {
       marginTop: '6px !important',

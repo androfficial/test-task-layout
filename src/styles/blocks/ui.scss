@@ -24,37 +24,6 @@ section:not(:first-child) {
   background-color: transparent;
   border-radius: 80px;
   transition: all 0.3s ease 0s;
-  &::before,
-  &::after {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    z-index: 1;
-    content: '';
-    background-color: rgba(#7e7e7e, 0.5);
-    border-radius: 80px;
-  }
-  &::before {
-    width: 0;
-    height: 100%;
-    transform: translateX(-50%);
-  }
-  &::after {
-    width: 130px;
-    height: 86px;
-    transition: transform 0.3s ease 0s;
-    transform: translate(-50%, 0px) scale(0);
-  }
-  &:active {
-    &::after {
-      transform: translate(-50%, 0px) scale(1);
-    }
-  }
-  &:not(:active):focus {
-    &::before {
-      animation: button-width-animation 1.08s ease-in-out infinite alternate;
-    }
-  }
   &:disabled {
     color: #fff;
     pointer-events: none;
@@ -69,7 +38,7 @@ section:not(:first-child) {
     background-color: #b4b4b4;
   }
   @media (hover: hover) {
-    &:not(:active):not(:focus):not(:disabled):hover {
+    &:not(:disabled):hover {
       background-color: #ffe302;
     }
   }

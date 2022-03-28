@@ -17,7 +17,7 @@ export const Modal = () => {
   );
 
   const stopContentPropagation = useCallback(
-    (e: MouseEvent<HTMLDivElement>): void => e.stopPropagation(),
+    (e: MouseEvent<HTMLDivElement>) => e.stopPropagation(),
     []
   );
 
