@@ -1,7 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-unreachable-loop */
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
 import {
   FormControlLabel,
   FormLabel,
@@ -11,7 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useFormik } from 'formik';
-import { ChangeEvent, useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import { Preloader } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
@@ -39,18 +35,6 @@ export const Register = () => {
       users.isSubmitting,
       users.formErrors,
     ]);
-
-  const validationErrors = useMemo(() => {
-    if (!formErrors.success) {
-      const array: string[] = [];
-
-      for (const key in formErrors.fails) {
-        formErrors.fails[key].map((el: string) => array.push(el));
-      }
-
-      return array;
-    }
-  }, [formErrors]);
 
   const formik = useFormik<IFormValues>({
     initialValues: {
@@ -190,7 +174,7 @@ export const Register = () => {
                   type='file'
                   name='photo'
                   accept='.jpeg, .jpg'
-                  onChange={(e) => handleChange(e)}
+                  onChange={handleChange}
                   onBlur={formik.handleBlur}
                   disabled={isSubmitting}
                 />
@@ -215,15 +199,14 @@ export const Register = () => {
                 formErrors.message !== 'The token expired.' ? (
                   <>
                     <strong className='validation-error__message'>
-                      {formErrors.message}
+                      {`${formErrors.message}:`}
                     </strong>
                     <ul className='validation-error__list'>
-                      {validationErrors &&
-                        validationErrors.map((error, i) => (
-                          <li key={i} className='validation-error__item'>
-                            <p className='validation-error__text'>{error}</p>
-                          </li>
-                        ))}
+                      {formErrors.fails.map((el, i) => (
+                        <li key={i} className='validation-error__item'>
+                          <p className='validation-error__text'>{el}</p>
+                        </li>
+                      ))}
                     </ul>
                   </>
                 ) : (
