@@ -65,19 +65,10 @@ body {
   // .page__intro
   &__intro {
   }
-  // .page__acquaintance
-  &__acquaintance {
-  }
   // .page__users
   &__users {
   }
   // .page__register
   &__register {
-  }
-  // .page__cat-footprints
-  &__cat-footprints {
-    @media (max-width: 480px) {
-      margin-top: 25px;
-    }
   }
 }

@@ -50,7 +50,7 @@
   }
   // .MuiOutlinedInput-input
   .MuiOutlinedInput-input {
-    padding: 15.5px 16px;
+    padding: 15.5px 15px;
   }
   // .form__input-fields
   &__input-fields {
@@ -76,7 +76,7 @@
     }
     // .MuiOutlinedInput-root
     .MuiOutlinedInput-root {
-      font-family: $secondaryFontFamily;
+      font-family: $primaryFontFamily;
       // .Mui-focused:not(.Mui-error) fieldset
       &.Mui-focused:not(.Mui-error) fieldset {
         border-color: #00bdd3;
@@ -164,9 +164,9 @@
     }
     // .MuiOutlinedInput-input
     .MuiOutlinedInput-input {
-      font-family: $secondaryFontFamily;
+      font-family: $primaryFontFamily;
       &::placeholder {
-        font-family: $secondaryFontFamily;
+        font-family: $primaryFontFamily;
         color: #7e7e7e;
         opacity: 1;
       }
@@ -262,7 +262,7 @@
   margin-top: 4px;
   margin-right: 15px;
   margin-left: 15px;
-  font-family: $secondaryFontFamily;
+  font-family: $primaryFontFamily;
   line-height: 140%;
   color: #cb3d40 !important;
   letter-spacing: normal;
