@@ -47,6 +47,18 @@ export interface IGetNewUser {
   user_id: number;
 }
 
+export interface IFormErrors {
+  success: boolean;
+  message: string;
+  fails: string[];
+}
+
+export interface IFailsRequest {
+  success: boolean;
+  message: string;
+  fails: any;
+}
+
 export interface IFetchUsersProps {
   page: number;
   count: number;
