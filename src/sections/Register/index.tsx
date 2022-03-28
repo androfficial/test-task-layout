@@ -11,7 +11,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 
 import { Preloader } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
-import { userAddingScheme } from '../../schemes/userAddingScheme';
+import { userRegisterScheme } from '../../schemes/userRegisterScheme';
 import {
   fetchUserPositions,
   newUserRegister,
@@ -44,7 +44,7 @@ export const Register = () => {
       position_id: 1,
       photo: null,
     },
-    validationSchema: userAddingScheme,
+    validationSchema: userRegisterScheme,
     onSubmit: (values) => {
       const formData = new FormData();
 
@@ -193,26 +193,32 @@ export const Register = () => {
                 fullWidth
               />
             </div>
+            {/* Если форма не отправляется сейчас и возникла ошибка регистрации пользователя то отобразить блок ошибки */}
             {!isSubmitting && !formErrors.success && (
               <div className='form__validation-error validation-error'>
-                {!formErrors.success &&
-                formErrors.message !== 'The token expired.' ? (
+                {/* Если сообщение ошибки не равно тому что срок действия токена истек то показать сообщение ошибки и список ошибок валидации */}
+                {formErrors.message !== 'The token expired.' ? (
                   <>
                     <strong className='validation-error__message'>
-                      {`${formErrors.message}:`}
+                      {formErrors.fails.length !== 0
+                        ? `${formErrors.message}:`
+                        : formErrors.message}
                     </strong>
-                    <ul className='validation-error__list'>
-                      {formErrors.fails.map((el, i) => (
-                        <li key={i} className='validation-error__item'>
-                          <p className='validation-error__text'>{el}</p>
-                        </li>
-                      ))}
-                    </ul>
+                    {formErrors.fails.length !== 0 && (
+                      <ul className='validation-error__list'>
+                        {formErrors.fails.map((el, i) => (
+                          <li key={i} className='validation-error__item'>
+                            <p className='validation-error__text'>{el}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </>
                 ) : (
                   <strong className='validation-error__message'>
                     Something went wrong, please try submitting the form again.
                   </strong>
+                  // Иначе если сообщение ошибки равно тому что срок действия токена истек вывести ошибку о том, что что то пошло не так
                 )}
               </div>
             )}

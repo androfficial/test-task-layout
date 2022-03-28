@@ -37,11 +37,10 @@ yarn run build
 ### :hammer_and_wrench: Stack:
 
 - ReactJS
-- Redux / Redux Thunk
+- Redux-Toolkit
 - TypeScript
 - Material UI
 - React-image
-- React-responsive
 - React-scroll
 - Formik / Yup
 - Classnames

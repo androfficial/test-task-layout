@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 import * as regex from '../helpers/regex';
 
-export const userAddingScheme = Yup.object({
+export const userRegisterScheme = Yup.object({
   name: Yup.string()
     .min(2, 'Name must contain at least 2 characters')
     .max(60, 'Name cannot contain more than 60 characters')
@@ -27,7 +27,7 @@ export const userAddingScheme = Yup.object({
         return new Promise((resolve) => {
           const reader = new FileReader();
           reader.readAsDataURL(value);
-          reader.onload = function (value) {
+          reader.onload = (value) => {
             const img = new Image();
             img.src = value?.target?.result as string;
             img.onload = () => {

@@ -1,9 +1,12 @@
+// Отступы для секций
 section:not(:first-child) {
   padding-top: 140px;
 }
 section:last-child {
   padding-bottom: 100px;
 }
+
+// Дефолтные стили для кнопки
 .btn {
   position: relative;
   display: inline-flex;
@@ -29,6 +32,8 @@ section:last-child {
     pointer-events: none;
   }
 }
+
+// Основная кнопка желтого цвета
 .btn--yellow {
   background-color: $primaryColor;
   &.disabled {
@@ -43,6 +48,8 @@ section:last-child {
     }
   }
 }
+
+// Heading 1
 .h1 {
   font-family: inherit !important;
   font-size: 40px !important;
@@ -50,11 +57,7 @@ section:last-child {
   line-height: math.div(40, 40) * 100% !important;
   letter-spacing: normal !important;
 }
-.h2 {
-  font-size: 22px !important;
-  font-weight: 400 !important;
-  line-height: math.div(28, 22) * 100% !important;
-}
+// Body
 .p1 {
   font-family: $primaryFontFamily !important;
   font-size: 16px !important;
